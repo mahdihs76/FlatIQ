@@ -1,8 +1,10 @@
-package com.example.mahdihs76.flatiq;
+package com.example.mahdihs76.flatiq.view.page;
 
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.mahdihs76.flatiq.R;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
