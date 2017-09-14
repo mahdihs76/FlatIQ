@@ -33,6 +33,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
+                .setDefaultFontPath("fonts/YEKAN.TTF")
+                .setFontAttrId(R.attr.fontPath)
+                .build());
 
         Fragment findGroupFragment = new FindGroupFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
