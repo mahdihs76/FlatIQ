@@ -30,12 +30,13 @@ public class WebService {
                     for (BacktoryObject o : list) {
                         Group.groupList.add(new Group(o.get(Database.COLUMN_GROUP_ID).toString(), o.get(Database.COLUMN_NAME).toString(), o.get(Database.COLUMN_ADMIN_ID).toString(), o.get(Database.COLUMN_LOCATION).toString(), o.get(Database.COLUMN_ACTIVITY).toString(), o.get(Database.COLUMN_MEMBERS).toString(), o.get(Database.COLUMN_SCHEDULE).toString(), o.get(Database.COLUMN_IMAGE_SRC).toString()));
                     }
+                } else {
+                    //
                 }
             }
         });
 
     }
-
 
 
     public static void setPersons() {
@@ -57,9 +58,7 @@ public class WebService {
                 }
             }
         });
-
     }
-
 
     public static void addMemeber(String memberID, BacktoryObject group) {
 
