@@ -1,7 +1,5 @@
 package com.example.mahdihs76.flatiq.server;
 
-import android.app.Activity;
-
 import com.backtory.java.internal.BacktoryCallBack;
 import com.backtory.java.internal.BacktoryObject;
 import com.backtory.java.internal.BacktoryQuery;
@@ -9,6 +7,7 @@ import com.backtory.java.internal.BacktoryResponse;
 import com.example.mahdihs76.flatiq.model.Group;
 import com.example.mahdihs76.flatiq.model.Person;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -17,9 +16,9 @@ import java.util.List;
  */
 
 public class WebService {
-    public static void setGroups(Activity activity) {
+    public static void setGroups() {
 
-        BacktoryConnection.connect2Server(activity);
+        Group.groupList = new ArrayList<>();
 
         BacktoryQuery query = new BacktoryQuery(Database.TABLE_GROUP);
         query.selectKeys(Arrays.asList(Database.COLUMN_GROUP_ID, Database.COLUMN_NAME, Database.COLUMN_ADMIN_ID, Database.COLUMN_LOCATION, Database.COLUMN_ACTIVITY, Database.COLUMN_MEMBERS, Database.COLUMN_SCHEDULE, Database.COLUMN_IMAGE_SRC));
@@ -42,6 +41,7 @@ public class WebService {
     public static void setPersons() {
 
 
+        Person.personList = new ArrayList<>();
 
         BacktoryQuery query = new BacktoryQuery(Database.TABLE_PERSON);
         query.selectKeys(Arrays.asList(Database.COLUMN_FIRST_NAME, Database.COLUMN_LAST_NAME, Database.COLUMN_PERSON_ID, Database.COLUMN_EMAIL, Database.COLUMN_PASSWORD, Database.COLUMN_SCORE, Database.COLUMN_IMAGE));
@@ -59,6 +59,20 @@ public class WebService {
         });
 
     }
+
+
+    public static void addMemeber(String memberID, BacktoryObject group) {
+
+        group.put(Database.COLUMN_MEMBERS, group.get(Database.COLUMN_MEMBERS) + "-" + memberID);
+        group.saveInBackground(new BacktoryCallBack<Void>() {
+            @Override
+            public void onResponse(BacktoryResponse<Void> backtoryResponse) {
+                //do sth?
+            }
+        });
+    }
+
+
 }
 
 

@@ -84,4 +84,61 @@ public class Person {
     public void setImage(String image) {
         this.image = image;
     }
+
+    public static ArrayList<String> getPersonFirstName() {
+        ArrayList<String> list = new ArrayList<>();
+        for (Person p : personList) {
+            list.add(p.getFirstName());
+        }
+        return list;
+    }
+
+    public static ArrayList<String> getPersonLastName() {
+        ArrayList<String> list = new ArrayList<>();
+        for (Person p : personList) {
+            list.add(p.getLastName());
+        }
+        return list;
+    }
+
+    public static ArrayList<String> getPersonEmail() {
+        ArrayList<String> list = new ArrayList<>();
+        for (Person p : personList) {
+            list.add(p.getEmail());
+        }
+        return list;
+    }
+
+    public static ArrayList<String> getPersonPassword() {
+        ArrayList<String> list = new ArrayList<>();
+        for (Person p : personList) {
+            list.add(p.getPassword());
+        }
+        return list;
+    }
+
+    public static ArrayList<String> getPersonId() {
+        ArrayList<String> list = new ArrayList<>();
+        for (Person p : personList) {
+            list.add(p.getId());
+        }
+        return list;
+    }
+
+    public static ArrayList<String> getPersonScore() {
+        ArrayList<String> list = new ArrayList<>();
+        for (Person p : personList) {
+            list.add(p.getScore());
+        }
+        return list;
+    }
+
+    public static ArrayList<String> getPersonImageSrc() {
+        ArrayList<String> list = new ArrayList<>();
+        for (Person p : personList) {
+            list.add(p.getImage());
+        }
+        return list;
+    }
+
 }

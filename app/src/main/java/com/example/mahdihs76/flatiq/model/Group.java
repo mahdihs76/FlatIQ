@@ -93,4 +93,68 @@ public class Group {
     public void setImageSrc(String imageSrc) {
         this.imageSrc = imageSrc;
     }
+
+    public static ArrayList<String> getGroupID() {
+        ArrayList<String> list = new ArrayList<>();
+        for(Group g : groupList) {
+            list.add(g.getId());
+        }
+        return list;
+    }
+
+    public static ArrayList<String> getGroupName() {
+        ArrayList<String> list = new ArrayList<>();
+        for(Group g : groupList) {
+            list.add(g.getName());
+        }
+        return list;
+    }
+
+    public static ArrayList<String> getGroupAdminID() {
+        ArrayList<String> list = new ArrayList<>();
+        for(Group g : groupList) {
+            list.add(g.getAdminID());
+        }
+        return list;
+    }
+
+    public static ArrayList<String> getGroupLocation() {
+        ArrayList<String> list = new ArrayList<>();
+        for(Group g : groupList) {
+            list.add(g.getLocation());
+        }
+        return list;
+    }
+
+    public static ArrayList<String> getGroupActivity() {
+        ArrayList<String> list = new ArrayList<>();
+        for(Group g : groupList) {
+            list.add(g.getActivity());
+        }
+        return list;
+    }
+
+    public static ArrayList<String> getGroupMembers() {
+        ArrayList<String> list = new ArrayList<>();
+        for(Group g : groupList) {
+            list.add(g.getMembers());
+        }
+        return list;
+    }
+
+    public static ArrayList<String> getGroupSchedule() {
+        ArrayList<String> list = new ArrayList<>();
+        for(Group g : groupList) {
+            list.add(g.getSchedule());
+        }
+        return list;
+    }
+
+    public static ArrayList<String> getGroupImageSrc() {
+        ArrayList<String> list = new ArrayList<>();
+        for(Group g : groupList) {
+            list.add(g.getImageSrc());
+        }
+        return list;
+    }
 }
