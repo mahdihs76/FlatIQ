@@ -47,8 +47,6 @@ public class MainActivity extends AppCompatActivity {
         WebService.setGroups();
         WebService.setPersons();
 
-        Log.i(LogTag.TAG, "onCreate: " + Group.groupList);
-
         Fragment findGroupFragment = new FindGroupFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.mahdihs76.flatiq.R;
 import com.example.mahdihs76.flatiq.model.Group;
+import com.example.mahdihs76.flatiq.server.ViewHandler;
 import com.example.mahdihs76.flatiq.view.Adapters.findGroup.GroupsAdapter;
 
 import java.util.ArrayList;
@@ -33,7 +34,9 @@ public class FindGroupFragment extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerViewGroups.setLayoutManager(linearLayoutManager);
         GroupsAdapter groupsAdapter = new GroupsAdapter(getActivity(), Group.groupList);
+        ViewHandler.groupsAdapter = groupsAdapter;
         recyclerViewGroups.setAdapter(groupsAdapter);
+
 
         return view;
     }
