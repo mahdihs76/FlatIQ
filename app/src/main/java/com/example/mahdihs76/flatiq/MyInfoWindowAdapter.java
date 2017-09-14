@@ -28,6 +28,7 @@ public class MyInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
         button = (Button) v.findViewById(R.id.map_button);
         Log.i("debug", "getInfoWindow: " + button);
         button.setText(marker.getTitle());
+
         return v;
     }
 
