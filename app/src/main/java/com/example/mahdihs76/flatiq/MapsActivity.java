@@ -1,15 +1,13 @@
 package com.example.mahdihs76.flatiq;
 
-import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
+import android.os.Bundle;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
@@ -43,50 +41,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(-34, 151);
-        LatLng latlng1 = new LatLng(-30, 150);
-        LatLng latlng2 = new LatLng(-35, 148);
-        LatLng latlng3 = new LatLng(-30, 140);
-        LatLng latlng4 = new LatLng(-32, 145);
-        LatLng latlng5 = new LatLng(-31, 152);
-
 //        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
         mMap.addMarker(new MarkerOptions()
                 .position(sydney)
                 .title("Melbourne")
                 .snippet("Population: 4,137,400"));
-
-        mMap.addMarker(new MarkerOptions()
-                .position(latlng1)
-                .title("latlng1")
-                .snippet("1"));
-
-        mMap.addMarker(new MarkerOptions()
-                .position(latlng2)
-                .title("latlng2")
-                .snippet("2"));
-
-        mMap.addMarker(new MarkerOptions()
-                .position(latlng3)
-                .title("latlng3")
-                .snippet("3"));
-
-        mMap.addMarker(new MarkerOptions()
-                .position(latlng4)
-                .title("latlng4")
-                .snippet("4"));
-
-        mMap.addMarker(new MarkerOptions()
-                .position(latlng5)
-                .title("latlng5")
-                .snippet("5"));
-
-        mMap.setInfoWindowAdapter(new MyInfoWindowAdapter(this));
-        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
-            @Override
-            public void onInfoWindowClick(Marker marker) {
-                Log.i("debug", "onInfoWindowClick: title " + marker.getTitle());
-            }
-        });
     }
 }
