@@ -84,57 +84,57 @@ public class Person {
         this.image = image;
     }
 
-    public static ArrayList<String> getPersonFirstName() {
+    public static ArrayList<String> getPersonFirstName(ArrayList<Person> persons) {
         ArrayList<String> list = new ArrayList<>();
-        for (Person p : personList) {
+        for (Person p : persons) {
             list.add(p.getFirstName());
         }
         return list;
     }
 
-    public static ArrayList<String> getPersonLastName() {
+    public static ArrayList<String> getPersonLastName(ArrayList<Person> persons) {
         ArrayList<String> list = new ArrayList<>();
-        for (Person p : personList) {
+        for (Person p : persons) {
             list.add(p.getLastName());
         }
         return list;
     }
 
-    public static ArrayList<String> getPersonEmail() {
+    public static ArrayList<String> getPersonEmail(ArrayList<Person> persons) {
         ArrayList<String> list = new ArrayList<>();
-        for (Person p : personList) {
+        for (Person p : persons) {
             list.add(p.getEmail());
         }
         return list;
     }
 
-    public static ArrayList<String> getPersonPassword() {
+    public static ArrayList<String> getPersonPassword(ArrayList<Person> persons) {
         ArrayList<String> list = new ArrayList<>();
-        for (Person p : personList) {
+        for (Person p : persons) {
             list.add(p.getPassword());
         }
         return list;
     }
 
-    public static ArrayList<String> getPersonId() {
+    public static ArrayList<String> getPersonId(ArrayList<Person> persons) {
         ArrayList<String> list = new ArrayList<>();
-        for (Person p : personList) {
+        for (Person p : persons) {
             list.add(p.getId());
         }
         return list;
     }
 
-    public static ArrayList<String> getPersonScore() {
+    public static ArrayList<String> getPersonScore(ArrayList<Person> persons) {
         ArrayList<String> list = new ArrayList<>();
-        for (Person p : personList) {
+        for (Person p : persons) {
             list.add(p.getScore());
         }
         return list;
     }
 
-    public static ArrayList<String> getPersonImageSrc() {
+    public static ArrayList<String> getPersonImageSrc(ArrayList<Person> persons) {
         ArrayList<String> list = new ArrayList<>();
-        for (Person p : personList) {
+        for (Person p : persons) {
             list.add(p.getImage());
         }
         return list;

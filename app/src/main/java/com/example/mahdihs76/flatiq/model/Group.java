@@ -93,65 +93,65 @@ public class Group {
         this.imageSrc = imageSrc;
     }
 
-    public static ArrayList<String> getGroupID() {
+    public static ArrayList<String> getGroupID(ArrayList<Group> groups) {
         ArrayList<String> list = new ArrayList<>();
-        for(Group g : groupList) {
+        for(Group g : groups) {
             list.add(g.getId());
         }
         return list;
     }
 
-    public static ArrayList<String> getGroupName() {
+    public static ArrayList<String> getGroupName(ArrayList<Group> groups) {
         ArrayList<String> list = new ArrayList<>();
-        for(Group g : groupList) {
+        for(Group g : groups) {
             list.add(g.getName());
         }
         return list;
     }
 
-    public static ArrayList<String> getGroupAdminID() {
+    public static ArrayList<String> getGroupAdminID(ArrayList<Group> groups) {
         ArrayList<String> list = new ArrayList<>();
-        for(Group g : groupList) {
+        for(Group g : groups) {
             list.add(g.getAdminID());
         }
         return list;
     }
 
-    public static ArrayList<String> getGroupLocation() {
+    public static ArrayList<String> getGroupLocation(ArrayList<Group> groups) {
         ArrayList<String> list = new ArrayList<>();
-        for(Group g : groupList) {
+        for(Group g : groups) {
             list.add(g.getLocation());
         }
         return list;
     }
 
-    public static ArrayList<String> getGroupActivity() {
+    public static ArrayList<String> getGroupActivity(ArrayList<Group> groups) {
         ArrayList<String> list = new ArrayList<>();
-        for(Group g : groupList) {
+        for(Group g : groups) {
             list.add(g.getActivity());
         }
         return list;
     }
 
-    public static ArrayList<String> getGroupMembers() {
+    public static ArrayList<String> getGroupMembers(ArrayList<Group> groups) {
         ArrayList<String> list = new ArrayList<>();
-        for(Group g : groupList) {
+        for(Group g : groups) {
             list.add(g.getMembers());
         }
         return list;
     }
 
-    public static ArrayList<String> getGroupSchedule() {
+    public static ArrayList<String> getGroupSchedule(ArrayList<Group> groups) {
         ArrayList<String> list = new ArrayList<>();
-        for(Group g : groupList) {
+        for(Group g : groups) {
             list.add(g.getSchedule());
         }
         return list;
     }
 
-    public static ArrayList<String> getGroupImageSrc() {
+    public static ArrayList<String> getGroupImageSrc(ArrayList<Group> groups) {
         ArrayList<String> list = new ArrayList<>();
-        for(Group g : groupList) {
+        for(Group g : groups) {
             list.add(g.getImageSrc());
         }
         return list;
