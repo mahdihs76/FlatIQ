@@ -14,9 +14,9 @@ public class Queries {
 
     public static final Double RANGE = 5.0;
 
-    public static List<Group> getNear(String coordinates, List<Group> allGroups) {
+    public static ArrayList<Group> getNear(String coordinates, List<Group> allGroups) {
 
-        List<Group> result = new ArrayList<>();
+        ArrayList<Group> result = new ArrayList<>();
         Double longitude = 0.0;
         Double latitude = 0.0;
         try {
@@ -54,9 +54,9 @@ public class Queries {
     }
 
 
-    public static List<Person> getGroupMembers(String groupID) {
+    public static ArrayList<Person> getGroupMembers(String groupID) {
         Group group = null;
-        List<Person> persons = new ArrayList<>();
+        ArrayList<Person> persons = new ArrayList<>();
 
         for(Group g : Group.groupList) {
             if(g.getId().equals(groupID)){

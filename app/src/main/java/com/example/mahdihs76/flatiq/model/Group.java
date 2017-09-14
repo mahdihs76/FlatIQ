@@ -1,14 +1,13 @@
 package com.example.mahdihs76.flatiq.model;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by kosar on 9/14/17.
  */
 
 public class Group {
-    public static List<Group> groupList = new ArrayList<>();
+    public static ArrayList<Group> groupList = new ArrayList<>();
 
     private String id;
     private String name;

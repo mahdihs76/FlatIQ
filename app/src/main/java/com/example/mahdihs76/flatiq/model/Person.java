@@ -1,14 +1,13 @@
 package com.example.mahdihs76.flatiq.model;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by kosar on 9/14/17.
  */
 
 public class Person {
-    public static List<Person> personList = new ArrayList<>();
+    public static ArrayList<Person> personList = new ArrayList<>();
 
 
     private String firstName;
