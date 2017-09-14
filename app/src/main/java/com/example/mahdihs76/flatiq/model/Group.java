@@ -15,17 +15,17 @@ public class Group {
     private String adminID;
     private String location;
     private String activity;
-    private String member;
+    private String members;
     private String schedule;
     private String imageSrc;
 
-    public Group(String id, String name, String adminID, String location, String activity, String member, String schedule, String imageSrc) {
+    public Group(String id, String name, String adminID, String location, String activity, String members, String schedule, String imageSrc) {
         this.id = id;
         this.name = name;
         this.adminID = adminID;
         this.location = location;
         this.activity = activity;
-        this.member = member;
+        this.members = members;
         this.schedule = schedule;
         this.imageSrc = imageSrc;
     }
@@ -70,12 +70,12 @@ public class Group {
         this.activity = activity;
     }
 
-    public String getMember() {
-        return member;
+    public String getMembers() {
+        return members;
     }
 
-    public void setMember(String member) {
-        this.member = member;
+    public void setMembers(String members) {
+        this.members = members;
     }
 
     public String getSchedule() {
