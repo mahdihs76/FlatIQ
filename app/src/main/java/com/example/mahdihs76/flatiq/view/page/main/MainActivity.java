@@ -1,22 +1,14 @@
 package com.example.mahdihs76.flatiq.view.page.main;
 
-import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.Toast;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
-import com.backtory.java.internal.BacktoryCallBack;
-import com.backtory.java.internal.BacktoryObject;
-import com.backtory.java.internal.BacktoryQuery;
-import com.backtory.java.internal.BacktoryResponse;
-import com.bumptech.glide.Glide;
 import com.example.mahdihs76.flatiq.R;
-
-import java.util.Arrays;
-import java.util.List;
-
-import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+import com.example.mahdihs76.flatiq.constant.LogTag;
+import com.example.mahdihs76.flatiq.model.Person;
+import com.example.mahdihs76.flatiq.server.BacktoryConnection;
+import com.example.mahdihs76.flatiq.server.WebService;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,7 +16,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        BacktoryConnection.connect2Server(this);
+
+
+        WebService.setPersons();
+        for(Person p : Person.personList) {
+            Log.i(LogTag.TAG, "onCreate: " + p.getFirstName());
+        }
     }
+
 
 }
 
