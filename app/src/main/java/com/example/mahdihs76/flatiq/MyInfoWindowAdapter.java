@@ -19,6 +19,7 @@ public class MyInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
 
     public MyInfoWindowAdapter(Activity activity) {
         this.activity = activity;
+
     }
 
     @Override
