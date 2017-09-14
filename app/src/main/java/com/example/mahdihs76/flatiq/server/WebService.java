@@ -1,9 +1,12 @@
 package com.example.mahdihs76.flatiq.server;
 
+import android.util.Log;
+
 import com.backtory.java.internal.BacktoryCallBack;
 import com.backtory.java.internal.BacktoryObject;
 import com.backtory.java.internal.BacktoryQuery;
 import com.backtory.java.internal.BacktoryResponse;
+import com.example.mahdihs76.flatiq.constant.LogTag;
 import com.example.mahdihs76.flatiq.model.Group;
 import com.example.mahdihs76.flatiq.model.Person;
 
@@ -17,7 +20,6 @@ import java.util.List;
 
 public class WebService {
     public static void setGroups() {
-
         Group.groupList = new ArrayList<>();
 
         BacktoryQuery query = new BacktoryQuery(Database.TABLE_GROUP);
@@ -27,8 +29,11 @@ public class WebService {
             public void onResponse(BacktoryResponse<List<BacktoryObject>> response) {
                 if (response.isSuccessful()) {
                     List<BacktoryObject> list = response.body();
+                    Log.i(LogTag.TAG, "onResponse: ");
                     for (BacktoryObject o : list) {
+                        Log.i(LogTag.TAG, "onResponse: " + o.get(Database.COLUMN_NAME).toString());
                         Group.groupList.add(new Group(o.get(Database.COLUMN_GROUP_ID).toString(), o.get(Database.COLUMN_NAME).toString(), o.get(Database.COLUMN_ADMIN_ID).toString(), o.get(Database.COLUMN_LOCATION).toString(), o.get(Database.COLUMN_ACTIVITY).toString(), o.get(Database.COLUMN_MEMBERS).toString(), o.get(Database.COLUMN_SCHEDULE).toString(), o.get(Database.COLUMN_IMAGE_SRC).toString()));
+                        ViewHandler.groupsAdapter.notifyDataSetChanged();
                     }
                 }
             }
