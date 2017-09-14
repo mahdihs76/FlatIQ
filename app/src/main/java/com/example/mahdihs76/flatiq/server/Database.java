@@ -15,6 +15,7 @@ public class Database {
     public static final String COLUMN_SCORE = "Score";
     public static final String COLUMN_IMAGE = "ImageSrc";
     public static final String COLUMN_PERSON_ID = "Id";
+    public static final String COLUMN_GROUPS = "Groups";
 
 
     public static final String TABLE_GROUP = "Group";

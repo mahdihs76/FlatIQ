@@ -37,22 +37,20 @@ public class WebService {
     }
 
 
-
     public static void setPersons() {
 
 
         Person.personList = new ArrayList<>();
 
         BacktoryQuery query = new BacktoryQuery(Database.TABLE_PERSON);
-        query.selectKeys(Arrays.asList(Database.COLUMN_FIRST_NAME, Database.COLUMN_LAST_NAME, Database.COLUMN_PERSON_ID, Database.COLUMN_EMAIL, Database.COLUMN_PASSWORD, Database.COLUMN_SCORE, Database.COLUMN_IMAGE));
+        query.selectKeys(Arrays.asList(Database.COLUMN_FIRST_NAME, Database.COLUMN_LAST_NAME, Database.COLUMN_PERSON_ID, Database.COLUMN_EMAIL, Database.COLUMN_PASSWORD, Database.COLUMN_SCORE, Database.COLUMN_IMAGE, Database.COLUMN_GROUPS));
         query.findInBackground(new BacktoryCallBack<List<BacktoryObject>>() {
             @Override
             public void onResponse(BacktoryResponse<List<BacktoryObject>> response) {
                 if (response.isSuccessful()) {
                     List<BacktoryObject> list = response.body();
                     for (BacktoryObject o : list) {
-//                        Log.i(LogTag.TAG, "onResponse: o" + o.get(Database.COLUMN_FIRST_NAME));
-                        Person.personList.add(new Person(o.get(Database.COLUMN_FIRST_NAME).toString(), o.get(Database.COLUMN_LAST_NAME).toString(), o.get(Database.COLUMN_EMAIL).toString(), o.get(Database.COLUMN_PASSWORD).toString(), o.get(Database.COLUMN_PERSON_ID).toString(), o.get(Database.COLUMN_SCORE).toString(), o.get(Database.COLUMN_IMAGE).toString()));
+                        Person.personList.add(new Person(o.get(Database.COLUMN_FIRST_NAME).toString(), o.get(Database.COLUMN_LAST_NAME).toString(), o.get(Database.COLUMN_EMAIL).toString(), o.get(Database.COLUMN_PASSWORD).toString(), o.get(Database.COLUMN_PERSON_ID).toString(), o.get(Database.COLUMN_SCORE).toString(), o.get(Database.COLUMN_IMAGE).toString(), o.get(Database.COLUMN_GROUPS).toString()));
                     }
                 }
             }
@@ -61,33 +59,54 @@ public class WebService {
     }
 
 
-    public static void addMemeber(String memberID, BacktoryObject group) {
 
-        group.put(Database.COLUMN_MEMBERS, group.get(Database.COLUMN_MEMBERS) + "-" + memberID);
-        group.saveInBackground(new BacktoryCallBack<Void>() {
+    public static void addMember(final String memberID, final String groupID) {
+
+
+        BacktoryQuery query1 = new BacktoryQuery(Database.TABLE_GROUP);
+        query1.selectKeys(Arrays.asList(Database.COLUMN_MEMBERS));
+        query1.whereEqualTo(Database.COLUMN_GROUP_ID, groupID);
+        query1.findInBackground(new BacktoryCallBack<List<BacktoryObject>>() {
             @Override
-            public void onResponse(BacktoryResponse<Void> backtoryResponse) {
-                //do sth?
+            public void onResponse(BacktoryResponse<List<BacktoryObject>> response) {
+                if (response.isSuccessful()) {
+                    List<BacktoryObject> list = response.body();
+                    BacktoryObject result = list.get(0);
+                    result.put(Database.COLUMN_MEMBERS, result.get(Database.COLUMN_MEMBERS) + "-" + memberID);
+                    result.saveInBackground(new BacktoryCallBack<Void>() {
+                        @Override
+                        public void onResponse(BacktoryResponse<Void> backtoryResponse) {
+                            //do sth?
+                        }
+                    });
+
+                }
             }
         });
+
+        BacktoryQuery query2 = new BacktoryQuery(Database.TABLE_PERSON);
+        query1.selectKeys(Arrays.asList(Database.COLUMN_GROUPS));
+        query2.whereEqualTo(Database.COLUMN_PERSON_ID, memberID);
+        query2.findInBackground(new BacktoryCallBack<List<BacktoryObject>>() {
+            @Override
+            public void onResponse(BacktoryResponse<List<BacktoryObject>> backtoryResponse) {
+                if(backtoryResponse.isSuccessful()) {
+                    List<BacktoryObject> list = backtoryResponse.body();
+                    BacktoryObject result = list.get(0);
+                    result.put(Database.COLUMN_GROUPS, result.get(Database.COLUMN_GROUPS) + "-" + groupID);
+                    result.saveInBackground(new BacktoryCallBack<Void>() {
+                        @Override
+                        public void onResponse(BacktoryResponse<Void> backtoryResponse) {
+                            //do sth?
+                        }
+                    });
+                }
+            }
+        });
+
+
+
     }
 
 
 }
-
-
-//BacktoryConnection.connect2Server(this);
-//
-//BacktoryQuery query = new BacktoryQuery(Database.TABLE_CONSULTANT);
-//query.selectKeys(Arrays.asList(Database.COLUMN_FIRST_NAME, Database.COLUMN_LAST_NAME));
-//query.findInBackground(new BacktoryCallBack<List<BacktoryObject>>() {
-//    @Override
-//    public void onResponse(BacktoryResponse<List<BacktoryObject>> response) {
-//        if (response.isSuccessful()) {
-//            List<BacktoryObject> list = response.body();
-//            for (BacktoryObject o : list) {
-//                Toast.makeText(MainActivity.this, o.get(Database.COLUMN_FIRST_NAME).toString(), Toast.LENGTH_SHORT).show();
-//            }
-//        }
-//    }
-//});

@@ -17,8 +17,9 @@ public class Person {
     private String id;
     private String score;
     private String image;
+    private String groups;
 
-    public Person(String firstName, String lastName, String email, String password, String id, String score, String image) {
+    public Person(String firstName, String lastName, String email, String password, String id, String score, String image, String groups) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -26,6 +27,7 @@ public class Person {
         this.id = id;
         this.score = score;
         this.image = image;
+        this.groups = groups;
     }
 
     public String getFirstName() {
@@ -84,6 +86,14 @@ public class Person {
         this.image = image;
     }
 
+    public String getGroups() {
+        return groups;
+    }
+
+    public void setGroups(String groups) {
+        this.groups = groups;
+    }
+
     public static ArrayList<String> getPersonFirstName(ArrayList<Person> persons) {
         ArrayList<String> list = new ArrayList<>();
         for (Person p : persons) {
@@ -136,6 +146,14 @@ public class Person {
         ArrayList<String> list = new ArrayList<>();
         for (Person p : persons) {
             list.add(p.getImage());
+        }
+        return list;
+    }
+
+    public static ArrayList<String> getPersonGroups(ArrayList<Person> persons) {
+        ArrayList<String> list = new ArrayList<>();
+        for (Person p : persons) {
+            list.add(p.getGroups());
         }
         return list;
     }
