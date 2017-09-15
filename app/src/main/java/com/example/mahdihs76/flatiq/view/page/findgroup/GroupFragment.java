@@ -1,6 +1,5 @@
 package com.example.mahdihs76.flatiq.view.page.findgroup;
 
-import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,11 +14,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.mahdihs76.flatiq.R;
-import com.example.mahdihs76.flatiq.model.Group;
-import com.example.mahdihs76.flatiq.model.Person;
 import com.example.mahdihs76.flatiq.server.ViewHandler;
 import com.example.mahdihs76.flatiq.tool.Queries;
-import com.example.mahdihs76.flatiq.view.Adapters.findGroup.GroupMemberAdapter;
 
 /**
  * Created by hamed on 09/14/2017.
@@ -45,7 +41,7 @@ public class GroupFragment extends Fragment {
 
         Glide.with(getActivity()).load(Queries.getGroupWithId(getArguments().getString("groupId")).getImageSrc()).into(groupImage);
         groupName.setText(Queries.getGroupWithId(getArguments().getString("groupId")).getName());
-        groupLocation.setText(Queries.getGroupWithId(getArguments().getString("groupId")).getLocation());
+        groupLocation.setText(Queries.getGroupWithId(getArguments().getString("groupId")).getLocationName());
         groupSchedule.setText(Queries.getGroupWithId(getArguments().getString("groupId")).getSchedule());
         groupField.setText(Queries.getGroupWithId(getArguments().getString("groupId")).getActivity());
 

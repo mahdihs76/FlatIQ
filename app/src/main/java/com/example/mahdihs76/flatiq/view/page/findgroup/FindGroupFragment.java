@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,15 +51,21 @@ public class FindGroupFragment extends Fragment {
                 ArrayList<String> activities = new ArrayList<>();
                 ArrayList<String> ids = new ArrayList<>();
 //                WebService.setGroups();
+                Log.i("debug", "onClick: findfragment " + Group.groupList);
                 for (Group g : Group.groupList) {
-                    String location = g.getLocation();
-                    String[] coordinates = location.split("-");
-                    latitudes.add(Double.parseDouble(coordinates[0]));
-                    longitudes.add(Double.parseDouble(coordinates[1]));
-                    names.add(g.getName());
-                    ids.add(g.getId());
-                    activities.add(g.getActivity());
+                    try {
+                        String location = g.getLocation();
+                        String[] coordinates = location.split("-");
+                        latitudes.add(Double.parseDouble(coordinates[0]));
+                        longitudes.add(Double.parseDouble(coordinates[1]));
+                        names.add(g.getName());
+                        ids.add(g.getId());
+                        activities.add(g.getActivity());
+                    } catch (Exception e) {
+                        Log.i("debug", "onClick: " + e.getMessage());
+                    }
                 }
+
                 intent.putExtra(MainActivity.LATITUDES, latitudes);
                 intent.putExtra(MainActivity.LONGITUDES, longitudes);
                 intent.putExtra(MainActivity.ACTIVITIES, activities);
