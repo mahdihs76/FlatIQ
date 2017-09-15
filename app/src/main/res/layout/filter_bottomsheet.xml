@@ -31,8 +31,10 @@
             android:layout_height="wrap_content"
             android:id="@+id/filter_button"
             android:text="فیلتر"
-            android:layout_marginLeft="8dp"
-            android:padding="16dp"/>
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/filter_button_background"
+            android:layout_alignTop="@+id/bottomsheet_logo" />
     </RelativeLayout>
     <RelativeLayout
         android:foreground="#000"
