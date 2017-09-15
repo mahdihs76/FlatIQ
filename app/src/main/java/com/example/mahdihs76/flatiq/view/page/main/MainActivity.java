@@ -84,13 +84,13 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.find_group:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,findGroupFragment).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, findGroupFragment).commit();
                         break;
 
                     case R.id.gallerypage:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,shopFragment).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, shopFragment).commit();
                         break;
-                    case  R.id.newspage:
+                    case R.id.newspage:
                         Toast.makeText(MainActivity.this, "این بخش به زودی فعال می گردد", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.profile_page:
@@ -142,7 +142,6 @@ public class MainActivity extends AppCompatActivity {
         setIntent(null);
     }
 }
-
 
 
 /**
