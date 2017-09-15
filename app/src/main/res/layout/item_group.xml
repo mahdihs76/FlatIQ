@@ -30,8 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
                 android:layout_weight="40"
-                android:scaleType="fitXY"
-                android:src="@mipmap/watch_icon" />
+                android:scaleType="fitXY" />
 
 
             <RelativeLayout
@@ -52,14 +51,12 @@
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:layout_alignParentRight="true"
-
                         android:layout_marginRight="8dp"
                         android:src="@mipmap/location_icon" />
 
 
                     <TextView
                         android:id="@+id/group_location"
-                        fontPath="fonts/BRoya.ttf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -83,44 +80,59 @@
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:layout_alignParentRight="true"
-
                         android:layout_marginRight="8dp"
                         android:src="@mipmap/watch_icon" />
 
 
                     <TextView
                         android:id="@+id/group_schedule"
-                        fontPath="fonts/BRoya.ttf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginBottom="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_toLeftOf="@+id/schedule_icon"
-
                         android:text="خیابان ولیعصر پارک ملت"
                         android:textAlignment="center"
                         android:textSize="17sp" />
                 </RelativeLayout>
 
                 <TextView
+                    android:id="@+id/group_field_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/schedule_bar"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:paddingRight="16dp"
+                    android:text="فعالیت تیم : "
+                    android:textAlignment="center"
+                    android:textSize="17sp" />
+
+
+                <TextView
                     android:id="@+id/group_field"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/schedule_bar"
                     android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_toLeftOf="@id/group_field_title"
+                    android:paddingRight="4dp"
                     android:text="دوچرخه سواری"
                     android:textAlignment="center"
-
                     android:textSize="17sp" />
+
 
                 <TextView
                     android:id="@+id/group_size"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
-                    android:layout_below="@+id/group_field"
+                    android:layout_below="@+id/schedule_bar"
                     android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
                     android:drawableLeft="@drawable/ic_man_user"
                     android:drawablePadding="4dp"
                     android:paddingLeft="8dp"
@@ -138,11 +150,11 @@
                 android:layout_height="wrap_content"
                 android:layout_above="@id/relative_info"
                 android:layout_alignParentRight="true"
-                android:paddingRight="16dp"
                 android:layout_marginTop="10dp"
+                android:background="@color/transColor"
+                android:paddingRight="16dp"
                 android:text="گروه حاج تقی"
                 android:textColor="@color/sefid"
-                android:background="@color/transColor"
                 android:textSize="30sp" />
         </RelativeLayout>
 
