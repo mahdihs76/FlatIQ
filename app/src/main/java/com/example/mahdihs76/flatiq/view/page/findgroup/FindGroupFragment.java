@@ -3,6 +3,7 @@ package com.example.mahdihs76.flatiq.view.page.findgroup;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomSheetDialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -66,6 +67,16 @@ public class FindGroupFragment extends Fragment {
                 intent.putExtra(MainActivity.NAMES, names);
                 intent.putExtra(MainActivity.IDS, ids);
                 startActivity(intent);
+            }
+        });
+
+        ImageView imageViewFilter= (ImageView) (getActivity().findViewById(R.id.setting_button));
+        imageViewFilter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BottomSheetDialogFragment bottomSheetDialogFragment = new FilterBottomSheet();
+                bottomSheetDialogFragment.show(getFragmentManager(), bottomSheetDialogFragment.getTag());
+
             }
         });
 
