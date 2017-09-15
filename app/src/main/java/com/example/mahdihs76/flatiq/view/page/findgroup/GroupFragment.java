@@ -16,6 +16,14 @@ import com.bumptech.glide.Glide;
 import com.example.mahdihs76.flatiq.R;
 import com.example.mahdihs76.flatiq.server.ViewHandler;
 import com.example.mahdihs76.flatiq.tool.Queries;
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.HorizontalBarChart;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.utils.ColorTemplate;
+
+import java.util.ArrayList;
 
 /**
  * Created by hamed on 09/14/2017.
@@ -52,6 +60,40 @@ public class GroupFragment extends Fragment {
         //GroupMemberAdapter groupMemberAdapter = new GroupMemberAdapter(getActivity(), Queries.getGroupMembers(getArguments().getString("groupId")));
         //// TODO: 09/14/2017
         recyclerViewMembers.setAdapter(ViewHandler.groupMemberAdapter);
+        BarChart chart=(BarChart)view.findViewById(R.id.group_chart);
+        ArrayList<BarEntry> entries = new ArrayList<>();
+        entries.add(new BarEntry(70f, 0));
+        entries.add(new BarEntry(68f, 1));
+        entries.add(new BarEntry(60f, 2));
+        entries.add(new BarEntry(72f, 3));
+        entries.add(new BarEntry(70f, 4));
+        entries.add(new BarEntry(54f, 5));
+
+        BarDataSet dataset = new BarDataSet(entries, "");
+        ArrayList<String> labels = new ArrayList<String>();
+        labels.add("یکشنبه");
+        labels.add("دوشنبه");
+        labels.add("سه شنبه");
+        labels.add("چهارشنبه");
+        labels.add("پنج شنبه");
+        labels.add("جمعه");
+
+
+        BarData data = new BarData(labels, dataset);
+        chart.setData(data);
+        chart.setDescription("");
+       // int color = getResources().getColor(R.color.light_text_holiday);
+
+
+
+
+      //  dataset.setColors(ColorTemplate.createColors(new int[]{color}));
+        dataset.setColors(ColorTemplate.COLORFUL_COLORS);
+        chart.animateXY(1500,1500);
+        chart.getAxisLeft().setAxisMaxValue(80f);
+        chart.getAxisLeft().setEnabled(false);
+        chart.getAxisRight().setAxisMaxValue(80f);
+        chart.getAxisRight().setEnabled(false);
 
 
         return view;
