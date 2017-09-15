@@ -89,8 +89,8 @@ public class WebService {
                             //do sth?
                             //this is group
                             Queries.getGroupWithId(groupID).setMembers(Queries.getGroupWithId(groupID).getMembers() + "-" + memberID);
-                            ViewHandler.groupMemberAdapter = new GroupMemberAdapter(context, Queries.getGroupMembers(groupID));
-
+                            ViewHandler.groupMemberAdapter.setPersons(Queries.getGroupMembers(groupID));
+                            ViewHandler.groupMemberAdapter.notifyDataSetChanged();
                         }
                     });
 
@@ -121,17 +121,13 @@ public class WebService {
                             } catch (NullPointerException n) {
                                 Log.i("debug", "onResponse: null " + Person.personList);
                             }
-                            ViewHandler.groupMemberAdapter = new GroupMemberAdapter(context, Queries.getGroupMembers(groupID));
+                            ViewHandler.groupMemberAdapter.setPersons(Queries.getGroupMembers(groupID));
+                            ViewHandler.groupMemberAdapter.notifyDataSetChanged();
                         }
                     });
                 }
             }
         });
-
-
-//        setGroups();
-//        setPersons();
-
 
     }
 

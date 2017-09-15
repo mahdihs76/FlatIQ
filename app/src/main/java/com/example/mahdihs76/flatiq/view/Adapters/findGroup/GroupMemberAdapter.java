@@ -21,9 +21,9 @@ public class GroupMemberAdapter extends RecyclerView.Adapter<GroupMemberAdapter.
     Context context;
 
     private ArrayList<Person> persons = new ArrayList<>();
+
     public GroupMemberAdapter(Context context, ArrayList<Person> persons) {
         this.context = context;
-
         this.persons = persons;
 
     }
@@ -38,8 +38,7 @@ public class GroupMemberAdapter extends RecyclerView.Adapter<GroupMemberAdapter.
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
 
-
-        holder.memberName.setText(Person.getPersonFirstName(persons).get(position)+" "+Person.getPersonLastName(persons).get(position));
+        holder.memberName.setText(Person.getPersonFirstName(persons).get(position) + " " + Person.getPersonLastName(persons).get(position));
         holder.memberRating.setText(Person.getPersonScore(persons).get(position));
 
         Glide.with(context).load(Person.getPersonImageSrc(persons).get(position)).apply(RequestOptions.circleCropTransform()).into(holder.memberImage);
@@ -52,10 +51,10 @@ public class GroupMemberAdapter extends RecyclerView.Adapter<GroupMemberAdapter.
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
+
         TextView memberName;
         ImageView memberImage;
         TextView memberRating;
-
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -64,6 +63,11 @@ public class GroupMemberAdapter extends RecyclerView.Adapter<GroupMemberAdapter.
             memberImage = (ImageView) itemView.findViewById(R.id.member_image);
             memberRating = (TextView) itemView.findViewById(R.id.member_rating);
         }
+    }
+
+    public void setPersons(ArrayList<Person> persons) {
+        this.persons = persons;
+        this.notifyDataSetChanged();
     }
 
 
