@@ -1,6 +1,7 @@
 package com.example.mahdihs76.flatiq.view.page.main;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
@@ -10,6 +11,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.backtory.java.internal.BacktoryCallBack;
@@ -17,6 +20,7 @@ import com.backtory.java.internal.BacktoryObject;
 import com.backtory.java.internal.BacktoryQuery;
 import com.backtory.java.internal.BacktoryResponse;
 import com.bumptech.glide.Glide;
+import com.example.mahdihs76.flatiq.MapsActivity;
 import com.example.mahdihs76.flatiq.R;
 import com.example.mahdihs76.flatiq.constant.LogTag;
 import com.example.mahdihs76.flatiq.model.Group;
@@ -26,6 +30,7 @@ import com.example.mahdihs76.flatiq.server.WebService;
 import com.example.mahdihs76.flatiq.view.page.findgroup.FindGroupFragment;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -33,6 +38,13 @@ import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class MainActivity extends AppCompatActivity {
+
+    public static final String LONGITUDES = "longitudes";
+    public static final String LATITUDES = "latitudes";
+    public static final String ACTIVITIES = "activities";
+    public static final String NAMES = "names";
+
+    private Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,21 +55,55 @@ public class MainActivity extends AppCompatActivity {
                 .setFontAttrId(R.attr.fontPath)
                 .build());
 
-        BacktoryConnection.connect2Server(this);
-        WebService.setGroups();
-        WebService.setPersons();
+//        BacktoryConnection.connect2Server(this);
+//        WebService.setGroups();
+//        WebService.setPersons();
 
+
+        fillGroups();
         Fragment findGroupFragment = new FindGroupFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, findGroupFragment);
         fragmentTransaction.commit();
 
+        button = (Button) findViewById(R.id.map_btn);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+                ArrayList<Double> latitudes = new ArrayList<>();
+                ArrayList<Double> longitudes = new ArrayList<>();
+                ArrayList<String> names = new ArrayList<>();
+                ArrayList<String> activities = new ArrayList<>();
+//                WebService.setGroups();
+                for (Group g : Group.groupList) {
+                    String location = g.getLocation();
+                    String[] coordinates = location.split("-");
+                    latitudes.add(Double.parseDouble(coordinates[0]));
+                    longitudes.add(Double.parseDouble(coordinates[1]));
+                    names.add(g.getName());
+                    activities.add(g.getActivity());
+                }
+                intent.putExtra(MainActivity.LATITUDES, latitudes);
+                intent.putExtra(MainActivity.LONGITUDES, longitudes);
+                intent.putExtra(MainActivity.ACTIVITIES, activities);
+                intent.putExtra(MainActivity.NAMES, names);
+                MainActivity.this.startActivity(intent);
+            }
+        });
+
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigationview);
         bottomNavigationView.setSelectedItemId(R.id.find_group);
         BottomNavigationViewHelper.removeShiftMode(bottomNavigationView);
     }
 
+    public static void fillGroups() {
+        Group.groupList.add(new Group("1000", "varzesh3", "3", "35.7145295-51.3731899", "volleyball", "2-3", "9shanbe ha", "sth.png"));
+        Group.groupList.add(new Group("1001", "yechizi", "2", "35.7382281-51.3752824", "basketball", "2-1", "5shanbe ha", "sth.png"));
+        Group.groupList.add(new Group("1002", "yechiz dige", "1", "35.6770522-51.3919707", "football", "1-3", "shanbe ha", "sth.png"));
+        Group.groupList.add(new Group("1003", "unyeki", "0", "35.7116288-51.4002982", "ping-pong", "4", "hichvaght", "sth.png"));
+    }
 
     public static class BottomNavigationViewHelper {
 
