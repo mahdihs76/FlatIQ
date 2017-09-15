@@ -6,6 +6,7 @@ import com.backtory.java.internal.BacktoryCallBack;
 import com.backtory.java.internal.BacktoryObject;
 import com.backtory.java.internal.BacktoryQuery;
 import com.backtory.java.internal.BacktoryResponse;
+import com.example.mahdihs76.flatiq.constant.LogTag;
 import com.example.mahdihs76.flatiq.model.Group;
 import com.example.mahdihs76.flatiq.model.Person;
 
@@ -20,16 +21,20 @@ import java.util.List;
 public class WebService {
     public static void setGroups() {
         Group.groupList = new ArrayList<>();
+        Log.i(LogTag.TAG, "onResponse: ");
 
         BacktoryQuery query = new BacktoryQuery(Database.TABLE_GROUP);
         query.selectKeys(Arrays.asList(Database.COLUMN_GROUP_ID, Database.COLUMN_NAME, Database.COLUMN_ADMIN_ID, Database.COLUMN_LOCATION, Database.COLUMN_ACTIVITY, Database.COLUMN_MEMBERS, Database.COLUMN_SCHEDULE, Database.COLUMN_IMAGE_SRC, Database.COLUMN_LOCATION_NAME));
         query.findInBackground(new BacktoryCallBack<List<BacktoryObject>>() {
             @Override
             public void onResponse(BacktoryResponse<List<BacktoryObject>> response) {
+                Log.i(LogTag.TAG, "onResponse: ");
+
                 if (response.isSuccessful()) {
                     List<BacktoryObject> list = response.body();
                     for (BacktoryObject o : list) {
                         Group.groupList.add(new Group(o.get(Database.COLUMN_GROUP_ID).toString(), o.get(Database.COLUMN_NAME).toString(), o.get(Database.COLUMN_ADMIN_ID).toString(), o.get(Database.COLUMN_LOCATION).toString(), o.get(Database.COLUMN_LOCATION_NAME).toString(), o.get(Database.COLUMN_ACTIVITY).toString(), o.get(Database.COLUMN_MEMBERS).toString(), o.get(Database.COLUMN_SCHEDULE).toString(), o.get(Database.COLUMN_IMAGE_SRC).toString()));
+                        Log.i(LogTag.TAG, "onResponse: " + o.get(Database.COLUMN_IMAGE_SRC));
                         ViewHandler.groupsAdapter.notifyDataSetChanged();
                     }
                 }

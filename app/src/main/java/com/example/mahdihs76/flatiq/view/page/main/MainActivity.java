@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.backtory.java.internal.BacktoryCallBack;
@@ -45,8 +46,9 @@ public class MainActivity extends AppCompatActivity {
     public static final String LATITUDES = "latitudes";
     public static final String ACTIVITIES = "activities";
     public static final String NAMES = "names";
+    public static final String IDS = "ids";
 
-    private Button button;
+    private ImageView button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,14 +60,13 @@ public class MainActivity extends AppCompatActivity {
                 .build());
 
         BacktoryConnection.connect2Server(this);
-//        WebService.setGroups();
-//        WebService.setPersons();
-
+        WebService.setGroups();
+        WebService.setPersons();
 
         ArrayList<Group> groups = new ArrayList<>();
 
-//        groups.add(new Group("1000","حاج تقی","2000","51.3731899-35.7145295","دوچرخه سواری","حامد","دوشنبه صبح","http://www.waikato.ac.nz/__data/assets/image/0007/292840/fields.jpg"));
-//        Group.groupList = groups;
+        groups.add(new Group("1000","حاج تقی","2000","51.3731899-35.7145295", "پارک ملت","دوچرخه سواری","حامد","دوشنبه صبح","http://www.waikato.ac.nz/__data/assets/image/0007/292840/fields.jpg"));
+        Group.groupList = groups;
 
         ArrayList<Person> persons = new ArrayList<>();
         persons.add(new Person("حامد", "شیروانی", "", "", "", "1001", "http://www.beytoote.com/images/stories/sport/hhs879.jpg", "1000"));
@@ -73,38 +74,20 @@ public class MainActivity extends AppCompatActivity {
 
 
         fillGroups();
-        Fragment findGroupFragment = new FindGroupFragment();
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container, findGroupFragment);
-        fragmentTransaction.commit();
 
-        button = (Button) findViewById(R.id.map_btn);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, MapsActivity.class);
-                ArrayList<Double> latitudes = new ArrayList<>();
-                ArrayList<Double> longitudes = new ArrayList<>();
-                ArrayList<String> names = new ArrayList<>();
-                ArrayList<String> activities = new ArrayList<>();
-//                WebService.setGroups();
-                for (Group g : Group.groupList) { //TODO should be changed to getNear with person's coordinates.
-                    String location = g.getLocation();
-                    String[] coordinates = location.split("-");
-                    latitudes.add(Double.parseDouble(coordinates[0]));
-                    longitudes.add(Double.parseDouble(coordinates[1]));
-                    names.add(g.getName());
-                    activities.add(g.getActivity());
-                }
-                intent.putExtra(MainActivity.LATITUDES, latitudes);
-                intent.putExtra(MainActivity.LONGITUDES, longitudes);
-                intent.putExtra(MainActivity.ACTIVITIES, activities);
-                intent.putExtra(MainActivity.NAMES, names);
-                MainActivity.this.startActivity(intent);
-            }
-        });
-
+        if (getIntent() != null && getIntent().getExtras() != null) {
+            Fragment groupFragment = new GroupFragment();
+            Bundle bundle = new Bundle();
+            bundle.putString("groupId", getIntent().getExtras().getString("groupId"));
+            groupFragment.setArguments(bundle);
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, groupFragment).commit();
+        } else {
+            Fragment findGroupFragment = new FindGroupFragment();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, findGroupFragment);
+            fragmentTransaction.commit();
+        }
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigationview);
         bottomNavigationView.setSelectedItemId(R.id.find_group);
         BottomNavigationViewHelper.removeShiftMode(bottomNavigationView);
@@ -139,12 +122,12 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 }
-
 
 
 /**
@@ -162,7 +145,6 @@ public class MainActivity extends AppCompatActivity {
 //);
 
 // 2- Add it to activity class :
-
 
 
 // 3- usage (Add font to assets/fonts:

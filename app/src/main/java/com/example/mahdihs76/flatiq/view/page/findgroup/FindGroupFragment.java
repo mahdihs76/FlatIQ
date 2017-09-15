@@ -19,6 +19,7 @@ import com.example.mahdihs76.flatiq.R;
 import com.example.mahdihs76.flatiq.model.Group;
 import com.example.mahdihs76.flatiq.server.ViewHandler;
 import com.example.mahdihs76.flatiq.view.Adapters.findGroup.GroupsAdapter;
+import com.example.mahdihs76.flatiq.view.page.main.MainActivity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -43,7 +44,27 @@ public class FindGroupFragment extends Fragment {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getActivity(), MapsActivity.class);
+                Intent intent = new Intent(getActivity(), MapsActivity.class);
+                ArrayList<Double> latitudes = new ArrayList<>();
+                ArrayList<Double> longitudes = new ArrayList<>();
+                ArrayList<String> names = new ArrayList<>();
+                ArrayList<String> activities = new ArrayList<>();
+                ArrayList<String> ids = new ArrayList<>();
+//                WebService.setGroups();
+                for (Group g : Group.groupList) {
+                    String location = g.getLocation();
+                    String[] coordinates = location.split("-");
+                    latitudes.add(Double.parseDouble(coordinates[0]));
+                    longitudes.add(Double.parseDouble(coordinates[1]));
+                    names.add(g.getName());
+                    ids.add(g.getId());
+                    activities.add(g.getActivity());
+                }
+                intent.putExtra(MainActivity.LATITUDES, latitudes);
+                intent.putExtra(MainActivity.LONGITUDES, longitudes);
+                intent.putExtra(MainActivity.ACTIVITIES, activities);
+                intent.putExtra(MainActivity.NAMES, names);
+                intent.putExtra(MainActivity.IDS, ids);
                 startActivity(intent);
             }
         });
