@@ -26,6 +26,7 @@ import com.example.mahdihs76.flatiq.server.WebService;
 import com.example.mahdihs76.flatiq.view.Adapters.findGroup.GroupMemberAdapter;
 import com.example.mahdihs76.flatiq.view.page.findgroup.FindGroupFragment;
 import com.example.mahdihs76.flatiq.view.page.findgroup.GroupFragment;
+import com.example.mahdihs76.flatiq.view.page.shop.ShopFragment;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String NAMES = "names";
     public static final String IDS = "ids";
     Fragment findGroupFragment;
+    Fragment shopFragment;
 
     private Button button;
 
@@ -73,6 +75,9 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.fragment_container, findGroupFragment);
         fragmentTransaction.commit();
 
+        shopFragment = new ShopFragment();
+        findGroupFragment = new FindGroupFragment();
+
         if (getIntent() != null && getIntent().getExtras() != null) {
             Fragment groupFragment = new GroupFragment();
             Bundle bundle = new Bundle();
@@ -88,15 +93,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
-
                     case R.id.find_group:
-                        findGroupFragment = new FindGroupFragment();
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,findGroupFragment).commit();
                         break;
 
+                    case R.id.gallerypage:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,shopFragment).commit();
+                        break;
                 }
                 return true;
-
             }
         });
 
