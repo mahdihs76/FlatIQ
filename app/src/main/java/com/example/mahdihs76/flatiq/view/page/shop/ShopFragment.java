@@ -12,9 +12,12 @@ import android.webkit.WebView;
 import com.example.mahdihs76.flatiq.R;
 import com.example.mahdihs76.flatiq.constant.Constant;
 
+import static android.view.View.GONE;
+
 public class ShopFragment extends Fragment {
 
     private WebView webView;
+
     public ShopFragment() {
         // Required empty public constructor
     }
@@ -25,6 +28,10 @@ public class ShopFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_shop, container, false);
         WebView myWebView = (WebView) view.findViewById(R.id.webview);
         myWebView.loadUrl(Constant.SHOP_URL);
+
+        (getActivity().findViewById(R.id.map_button)).setVisibility(GONE);
+        (getActivity().findViewById(R.id.setting_button)).setVisibility(GONE);
+
         return view;
     }
 

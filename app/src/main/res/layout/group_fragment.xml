@@ -36,8 +36,8 @@
                     android:layout_height="50dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="5dp"
-                    android:src="@mipmap/ic_join" />
-
+                    android:src="@drawable/ic_add_circle"
+                    android:tag="ok"/>
 
                 <TextView
                     android:id="@+id/group_name"
@@ -128,8 +128,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/group_field"
-                    android:layout_marginBottom="10dp"
-                    android:text="تعداد اعضا"
+                    android:text="اعضای گروه"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:textSize="16sp"
+                    android:background="@color/primaryColor"
 
                     android:textAlignment="center" />
 
@@ -143,11 +146,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/group_information_card" />
+
+        <TextView
+            android:id="@+id/chart_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/group_members_recyclerview"
+            android:text="تعداد حاضرین"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:textSize="16sp"
+            android:background="@color/primaryColor"
+            android:textAlignment="center" />
+
         <com.github.mikephil.charting.charts.BarChart
             android:id="@+id/group_chart"
             android:layout_width="match_parent"
             android:layout_height="300dp"
-            android:layout_below="@+id/group_members_recyclerview" />
+            android:layout_below="@+id/chart_title" />
 
     </RelativeLayout>
 

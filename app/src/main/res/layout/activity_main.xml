@@ -5,57 +5,58 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.mahdihs76.flatiq.view.page.main.MainActivity">
+
     <RelativeLayout
+        android:id="@+id/toolbar_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/toolbar_container">
-    <android.support.v7.widget.Toolbar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/main_activity_toolbar"
-        android:background="@color/primaryColor"/>
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/main_activity_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/primaryColor" />
+
         <TextView
+            fontPath="fonts/A.Ghasem.ttf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
             android:text="هم رِکاب"
-            android:textSize="30dp"
-            fontPath="fonts/A.Ghasem.ttf"
             android:textColor="#ffffff"
+            android:textSize="30dp"
 
-         />
+            />
+
         <ImageView
+            android:id="@+id/map_button"
             android:layout_width="27dp"
             android:layout_height="27dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:id="@+id/map_button"
             android:layout_marginRight="10dp"
-            android:src="@drawable/ic_map"
-          />
+            android:src="@drawable/ic_map" />
+
         <ImageView
+            android:id="@+id/setting_button"
             android:layout_width="27dp"
             android:layout_height="27dp"
             android:layout_centerVertical="true"
-            android:id="@+id/setting_button"
             android:layout_marginLeft="10dp"
             android:src="@drawable/ic_settings"
-
             />
-
 
 
     </RelativeLayout>
 
 
     <FrameLayout
-        android:layout_below="@+id/toolbar_container"
-        android:layout_above="@+id/bottom_navigationview"
+        android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
-        android:id="@+id/fragment_container"
-        />
+        android:layout_above="@+id/bottom_navigationview"
+        android:layout_below="@+id/toolbar_container" />
 
 
     <android.support.design.widget.BottomNavigationView
@@ -66,8 +67,6 @@
         app:menu="@menu/navigation_menu"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="0dp" />
-
-
 
 
 </RelativeLayout>

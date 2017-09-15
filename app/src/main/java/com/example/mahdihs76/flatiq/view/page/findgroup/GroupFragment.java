@@ -29,6 +29,8 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
 
+import static android.view.View.GONE;
+
 /**
  * Created by hamed on 09/14/2017.
  */
@@ -66,7 +68,11 @@ public class GroupFragment extends Fragment {
                 Group thisGroup = Queries.getGroupWithId(getArguments().getString("groupId"));
                 WebService.addMember(personID, thisGroup.getId(), getActivity());
                 ViewHandler.groupMemberAdapter.notifyDataSetChanged();
-                Snackbar.make(view, "شما به گروه " + "\"" + thisGroup.getName() + "\"" + " ملحق شدید!", Snackbar.LENGTH_LONG).show();
+                if (joinButton.getTag().equals("ok"))
+                    Snackbar.make(view, "شما به گروه " + "\"" + thisGroup.getName() + "\"" + " ملحق شدید!", Snackbar.LENGTH_LONG).show();
+                else
+                    Snackbar.make(view, "شما از گروه " + "\"" + thisGroup.getName() + "\"" + " خارج شدید!", Snackbar.LENGTH_LONG).show();
+                switchIcon();
             }
         });
 
@@ -115,6 +121,21 @@ public class GroupFragment extends Fragment {
         chart.getAxisRight().setAxisMaxValue(80f);
         chart.getAxisRight().setEnabled(false);
 
+        (getActivity().findViewById(R.id.map_button)).setVisibility(GONE);
+        (getActivity().findViewById(R.id.setting_button)).setVisibility(GONE);
+
+
         return view;
     }
+
+    private void switchIcon() {
+        if (joinButton.getTag().equals("ok")) {
+            joinButton.setTag("notOk");
+            joinButton.setImageResource(R.drawable.ic_left_group);
+        } else {
+            joinButton.setTag("ok");
+            joinButton.setImageResource(R.drawable.ic_add_circle);
+        }
+    }
+
 }

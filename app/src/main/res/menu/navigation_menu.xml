@@ -22,6 +22,7 @@
 
     <item
         android:title="تازه های ورزش"
+        android:icon="@drawable/ic_radio"
 
         android:id="@+id/newspage"
         app:showAsAction="always">
@@ -31,6 +32,7 @@
     <item
         android:title="فروش"
         android:id="@+id/gallerypage"
+        android:icon="@drawable/ic_shopping_cart"
 
         app:showAsAction="always">
 

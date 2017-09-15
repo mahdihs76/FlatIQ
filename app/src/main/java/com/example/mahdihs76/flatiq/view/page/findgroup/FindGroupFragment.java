@@ -23,6 +23,8 @@ import com.example.mahdihs76.flatiq.view.page.main.MainActivity;
 
 import java.util.ArrayList;
 
+import static android.view.View.GONE;
+
 /**
  * Created by hamed on 09/14/2017.
  */
@@ -86,6 +88,8 @@ public class FindGroupFragment extends Fragment {
             }
         });
 
+        (getActivity().findViewById(R.id.map_button)).setVisibility(View.VISIBLE);
+        (getActivity().findViewById(R.id.setting_button)).setVisibility(View.VISIBLE);
 
         return view;
     }
