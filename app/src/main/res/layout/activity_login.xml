@@ -76,7 +76,7 @@
         android:layout_marginRight="32dp"
         android:padding="12dp"
         fontPath="fonts/A.Ghasem.ttf"
-        android:text="هم رکاب"/>
+        android:text="هم‌رِکاب"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

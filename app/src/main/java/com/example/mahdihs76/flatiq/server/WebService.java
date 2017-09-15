@@ -1,7 +1,5 @@
 package com.example.mahdihs76.flatiq.server;
 
-import android.util.Log;
-
 import com.backtory.java.internal.BacktoryCallBack;
 import com.backtory.java.internal.BacktoryObject;
 import com.backtory.java.internal.BacktoryQuery;
@@ -112,13 +110,6 @@ public class WebService {
                         public void onResponse(BacktoryResponse<Void> backtoryResponse) {
                             //this is person
                             Queries.getPersonWithId(memberID).setGroups(Queries.getPersonWithId(memberID).getGroups() + "-" + groupID);
-                            try {
-                                Log.i("debug", "onResponse: members of group " + Queries.getGroupWithId(groupID).getMembers());
-                                Log.i("debug", "onResponse: groups of person " + Queries.getPersonWithId(memberID).getGroups());
-                                Log.i("debug", "onResponse: groupid: " + groupID + " personid: " + memberID);
-                            } catch (NullPointerException n) {
-                                Log.i("debug", "onResponse: null " + Person.personList);
-                            }
                             ViewHandler.groupMemberAdapter.setPersons(Queries.getGroupMembers(groupID));
                             ViewHandler.groupMemberAdapter.notifyDataSetChanged();
                         }
@@ -128,6 +119,12 @@ public class WebService {
         });
 
     }
+
+
+//    public static void addPerson(Person person) {
+//        BacktoryQuery query = new BacktoryQuery(Database.TABLE_PERSON);
+//
+//    }
 
 
     public static void removeMember(final String memberId, final String groupId){

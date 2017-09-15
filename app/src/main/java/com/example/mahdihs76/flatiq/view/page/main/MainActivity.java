@@ -149,6 +149,11 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         setIntent(null);
     }
+
+//    @Override
+//    public void onBackPressed() {
+//        finish();
+//    }
 }
 
 

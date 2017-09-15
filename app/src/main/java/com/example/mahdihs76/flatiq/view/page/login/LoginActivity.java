@@ -2,22 +2,16 @@ package com.example.mahdihs76.flatiq.view.page.login;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import com.example.mahdihs76.flatiq.R;
 import com.example.mahdihs76.flatiq.constant.BacktoryAdminUser;
-import com.example.mahdihs76.flatiq.constant.Constant;
 import com.example.mahdihs76.flatiq.view.page.main.MainActivity;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
@@ -54,6 +48,12 @@ public class LoginActivity extends FragmentActivity{
                 {
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
+
+
+
+
+
+//                    finish();
                 } else {
                     Toast.makeText(LoginActivity.this, "نام کاربری و رمز عبور مطابقت ندارند", Toast.LENGTH_SHORT).show();
                 }
