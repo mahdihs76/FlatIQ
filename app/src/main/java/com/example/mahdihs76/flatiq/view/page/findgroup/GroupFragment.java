@@ -4,15 +4,18 @@ import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.mahdihs76.flatiq.R;
+import com.example.mahdihs76.flatiq.model.Group;
 import com.example.mahdihs76.flatiq.model.Person;
 import com.example.mahdihs76.flatiq.server.ViewHandler;
 import com.example.mahdihs76.flatiq.tool.Queries;
@@ -23,13 +26,29 @@ import com.example.mahdihs76.flatiq.view.Adapters.findGroup.GroupMemberAdapter;
  */
 
 public class GroupFragment extends Fragment {
+    TextView groupName;
+    TextView groupLocation;
+    TextView groupSchedule;
+    TextView groupField;
+    CardView cardView;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.group_fragment, container, false);
 
         ImageView groupImage = (ImageView) view.findViewById(R.id.group_image);
+        groupName = (TextView) view.findViewById(R.id.group_name);
+        groupLocation = (TextView) view.findViewById(R.id.group_location);
+        groupSchedule = (TextView) view.findViewById(R.id.group_schedule);
+        groupField = (TextView) view.findViewById(R.id.group_field);
+        cardView = (CardView) view.findViewById(R.id.group_card);
+
         Glide.with(getActivity()).load(Queries.getGroupWithId(getArguments().getString("groupId")).getImageSrc()).into(groupImage);
+        groupName.setText(Queries.getGroupWithId(getArguments().getString("groupId")).getName());
+        groupLocation.setText(Queries.getGroupWithId(getArguments().getString("groupId")).getLocation());
+        groupSchedule.setText(Queries.getGroupWithId(getArguments().getString("groupId")).getSchedule());
+        groupField.setText(Queries.getGroupWithId(getArguments().getString("groupId")).getActivity());
+
 
         RecyclerView recyclerViewMembers = (RecyclerView) view.findViewById(R.id.group_members_recyclerview);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());

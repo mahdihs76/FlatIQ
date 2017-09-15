@@ -97,7 +97,6 @@ public class MainActivity extends AppCompatActivity {
                     names.add(g.getName());
                     activities.add(g.getActivity());
                 }
-                Log.i(LogTag.TAG, "onClick: " + longitudes);
                 intent.putExtra(MainActivity.LATITUDES, latitudes);
                 intent.putExtra(MainActivity.LONGITUDES, longitudes);
                 intent.putExtra(MainActivity.ACTIVITIES, activities);
@@ -140,12 +139,12 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 }
+
 
 
 /**
@@ -163,6 +162,7 @@ public class MainActivity extends AppCompatActivity {
 //);
 
 // 2- Add it to activity class :
+
 
 
 // 3- usage (Add font to assets/fonts:

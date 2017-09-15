@@ -44,7 +44,7 @@ public class GroupMemberAdapter extends RecyclerView.Adapter<GroupMemberAdapter.
         holder.memberName.setText(Person.getPersonFirstName(persons).get(position)+" "+Person.getPersonLastName(persons).get(position));
         holder.memberRating.setText(Person.getPersonScore(persons).get(position));
 
-        Glide.with(context).load(Person.getPersonImageSrc(persons).get(position)).into(holder.memberImage);
+        Glide.with(context).load(Person.getPersonImageSrc(persons).get(position)).apply(RequestOptions.circleCropTransform()).into(holder.memberImage);
 
     }
 
