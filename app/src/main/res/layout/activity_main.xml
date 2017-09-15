@@ -50,9 +50,6 @@
         />
 
 
-
-
-
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottom_navigationview"
         android:layout_width="match_parent"
