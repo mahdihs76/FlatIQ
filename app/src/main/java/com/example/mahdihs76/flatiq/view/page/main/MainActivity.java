@@ -17,6 +17,7 @@ import com.backtory.java.internal.BacktoryObject;
 import com.backtory.java.internal.BacktoryQuery;
 import com.backtory.java.internal.BacktoryResponse;
 import com.bumptech.glide.Glide;
+import com.example.mahdihs76.flatiq.MapsActivity;
 import com.example.mahdihs76.flatiq.R;
 import com.example.mahdihs76.flatiq.constant.LogTag;
 import com.example.mahdihs76.flatiq.model.Group;
@@ -24,11 +25,14 @@ import com.example.mahdihs76.flatiq.model.Person;
 import com.example.mahdihs76.flatiq.server.BacktoryConnection;
 import com.example.mahdihs76.flatiq.server.WebService;
 import com.example.mahdihs76.flatiq.view.page.findgroup.FindGroupFragment;
+import com.example.mahdihs76.flatiq.view.page.findgroup.GroupFragment;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import co.ronash.pushe.Pushe;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -46,6 +50,14 @@ public class MainActivity extends AppCompatActivity {
         BacktoryConnection.connect2Server(this);
         WebService.setGroups();
         WebService.setPersons();
+        ArrayList<Group> groups = new ArrayList<>();
+
+        groups.add(new Group("1000","حاج تقی","2000","طرشت شمالی بوستان طرشت","دوچرخه سواری","حامد","دوشنبه صبح","http://www.waikato.ac.nz/__data/assets/image/0007/292840/fields.jpg"));
+        Group.groupList = groups;
+
+        ArrayList<Person> persons = new ArrayList<>();
+        persons.add(new Person("حامد", "شیروانی", "", "", "", "1001", "http://www.beytoote.com/images/stories/sport/hhs879.jpg", "1000"));
+        Person.personList = persons;
 
         Fragment findGroupFragment = new FindGroupFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -81,8 +93,13 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
 }
+
+
 
 /**
  * HELP
@@ -100,10 +117,7 @@ public class MainActivity extends AppCompatActivity {
 
 // 2- Add it to activity class :
 
-//@Override
-//protected void attachBaseContext(Context newBase) {
-//    super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
-//}
+
 
 // 3- usage (Add font to assets/fonts:
 // <TextView fontPath="fonts/MyFont.ttf"/>

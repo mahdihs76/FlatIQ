@@ -22,5 +22,16 @@
         android:layout_below="@+id/member_name"
         android:id="@+id/member_rating"
         android:layout_toRightOf="@+id/member_image"/>
+    <RelativeLayout
+        android:id="@+id/member_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/member_image"
+        android:layout_marginBottom="3dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
+        android:foreground="#afafaf" />
+
 
 </RelativeLayout>

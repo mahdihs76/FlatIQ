@@ -56,6 +56,7 @@ public class WebService {
                     List<BacktoryObject> list = response.body();
                     for (BacktoryObject o : list) {
                         Person.personList.add(new Person(o.get(Database.COLUMN_FIRST_NAME).toString(), o.get(Database.COLUMN_LAST_NAME).toString(), o.get(Database.COLUMN_EMAIL).toString(), o.get(Database.COLUMN_PASSWORD).toString(), o.get(Database.COLUMN_PERSON_ID).toString(), o.get(Database.COLUMN_SCORE).toString(), o.get(Database.COLUMN_IMAGE).toString(), o.get(Database.COLUMN_GROUPS).toString()));
+                        ViewHandler.groupMemberAdapter.notifyDataSetChanged();
                     }
                 }
             }

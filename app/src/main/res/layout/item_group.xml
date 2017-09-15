@@ -15,6 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="90"
         android:elevation="7dp"
+        android:layout_marginTop="10dp"
         android:id="@+id/group_card">
 
         <LinearLayout
@@ -52,12 +53,13 @@
                     android:id="@+id/location_bar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/group_name">
+                    android:layout_below="@+id/group_name"
+                    android:layout_marginBottom="5dp">
 
                     <ImageView
                         android:id="@+id/location_icon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
 
                         android:layout_alignParentRight="true"
                         android:src="@mipmap/location_icon" />
@@ -85,8 +87,8 @@
 
                     <ImageView
                         android:id="@+id/schedule_icon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
 
                         android:layout_alignParentRight="true"
                         android:src="@mipmap/watch_icon" />
