@@ -79,6 +79,7 @@ public class FilterBottomSheet extends BottomSheetDialogFragment {
 
                 ViewHandler.groupsAdapter.setGroups(toRemain);
                 ViewHandler.groupsAdapter.notifyDataSetChanged();
+                ViewHandler.avLoadingIndicatorView.hide();
                 dismiss();
                 Toast.makeText(getActivity(), "فیلترسازی انجام شد.", Toast.LENGTH_SHORT).show();
             }

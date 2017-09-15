@@ -58,7 +58,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override
             public void onInfoWindowClick(Marker marker) {
-                String id = (String) marker.getTag();
+                String id = marker.getTitle();
                 Intent intent = new Intent(MapsActivity.this, MainActivity.class);
                 intent.putExtra("groupId", id);
                 startActivity(intent);

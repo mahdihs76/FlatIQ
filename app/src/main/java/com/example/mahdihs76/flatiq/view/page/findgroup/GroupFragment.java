@@ -52,6 +52,7 @@ public class GroupFragment extends Fragment {
         view = inflater.inflate(R.layout.group_fragment, container, false);
 
         ImageView groupImage = (ImageView) view.findViewById(R.id.group_image);
+
         groupName = (TextView) view.findViewById(R.id.group_name);
         groupLocation = (TextView) view.findViewById(R.id.group_location);
         groupSchedule = (TextView) view.findViewById(R.id.group_schedule);

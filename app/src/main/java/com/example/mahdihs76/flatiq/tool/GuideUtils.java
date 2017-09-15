@@ -16,17 +16,17 @@ import java.util.ArrayList;
 
 public class GuideUtils {
 
+    private final static long SINGLE_SHOT_ID = 123456789;
 
     public static void showGuide(final Activity activity, final ArrayList<CaseView> list, final int id) {
 
-//        Button btn = (Button) activity.findViewById(R.id.next_button);
         Button button = new Button(activity);
         button.setText("فهمیدم");
         button.setBackground(activity.getResources().getDrawable(R.drawable.filter_button_background));
         new ShowcaseView.Builder(activity, true)
                 .setTarget(list.get(id).getTargetView())
                 .replaceEndButton(button)
-//                .singleShot(0)
+                .singleShot(SINGLE_SHOT_ID + id)
                 .setContentTitle(list.get(id).getTitle())
                 .setContentText(list.get(id).getDescription())
                 .withHoloShowcase()
