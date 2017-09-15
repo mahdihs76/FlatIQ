@@ -79,5 +79,14 @@ public class Queries {
         return persons;
     }
 
+    public static Group getGroupWithId(String id) {
+        for (Group group: Group.groupList) {
+            if (group.getId().equals(id)){
+                return group;
+            }
+        }
+        return null;
+    }
+
 
 }

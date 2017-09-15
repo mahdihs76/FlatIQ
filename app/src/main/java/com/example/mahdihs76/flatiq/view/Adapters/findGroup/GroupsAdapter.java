@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.mahdihs76.flatiq.R;
 import com.example.mahdihs76.flatiq.model.Group;
+import com.example.mahdihs76.flatiq.tool.Queries;
 import com.example.mahdihs76.flatiq.view.page.findgroup.GroupFragment;
 
 import java.util.ArrayList;
@@ -44,7 +46,7 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.MyViewHold
 
 
         holder.groupName.setText(Group.getGroupName(groups).get(position));
-//        holder.groupSize.setText(Queries.getGroupMembers(Group.getGroupID(groups).get(position)).size());
+        holder.groupSize.setText(String.valueOf(Queries.getGroupMembers(Group.getGroupID(groups).get(position)).size()));
         holder.groupLocation.setText(Group.getGroupLocation(groups).get(position));
         holder.groupSchedule.setText(Group.getGroupSchedule(groups).get(position));
         holder.groupField.setText(Group.getGroupActivity(groups).get(position));
@@ -52,11 +54,11 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.MyViewHold
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle bundle=new Bundle();
-                bundle.putString("groupId",Group.getGroupID(groups).get(position));
-                Fragment groupFragment =new GroupFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("groupId", Group.getGroupID(groups).get(position));
+                Fragment groupFragment = new GroupFragment();
                 groupFragment.setArguments(bundle);
-                ((FragmentActivity) context).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,groupFragment).commit();
+                ((FragmentActivity) context).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, groupFragment).commit();
             }
         });
 
@@ -85,7 +87,7 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.MyViewHold
             groupLocation = (TextView) itemView.findViewById(R.id.group_location);
             groupSchedule = (TextView) itemView.findViewById(R.id.group_schedule);
             groupField = (TextView) itemView.findViewById(R.id.group_field);
-            cardView= (CardView) itemView.findViewById(R.id.group_card);
+            cardView = (CardView) itemView.findViewById(R.id.group_card);
 
 
         }

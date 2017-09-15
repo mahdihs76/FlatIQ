@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.mahdihs76.flatiq.R;
 import com.example.mahdihs76.flatiq.model.Group;
 import com.example.mahdihs76.flatiq.model.Person;
@@ -64,9 +65,6 @@ public class GroupMemberAdapter extends RecyclerView.Adapter<GroupMemberAdapter.
             memberName = (TextView) itemView.findViewById(R.id.member_name);
             memberImage = (ImageView) itemView.findViewById(R.id.member_image);
             memberRating = (TextView) itemView.findViewById(R.id.member_rating);
-
-
-
         }
     }
 

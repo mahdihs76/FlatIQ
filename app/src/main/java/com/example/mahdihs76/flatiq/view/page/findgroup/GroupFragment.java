@@ -1,5 +1,6 @@
 package com.example.mahdihs76.flatiq.view.page.findgroup;
 
+import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,8 +9,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.example.mahdihs76.flatiq.R;
+import com.example.mahdihs76.flatiq.model.Person;
 import com.example.mahdihs76.flatiq.server.ViewHandler;
 import com.example.mahdihs76.flatiq.tool.Queries;
 import com.example.mahdihs76.flatiq.view.Adapters.findGroup.GroupMemberAdapter;
@@ -24,10 +28,15 @@ public class GroupFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.group_fragment, container, false);
 
-        RecyclerView recyclerViewMembers = (RecyclerView) view.findViewById(R.id.recyclerview_groups);
+        ImageView groupImage = (ImageView) view.findViewById(R.id.group_image);
+        Glide.with(getActivity()).load(Queries.getGroupWithId(getArguments().getString("groupId")).getImageSrc()).into(groupImage);
+
+        RecyclerView recyclerViewMembers = (RecyclerView) view.findViewById(R.id.group_members_recyclerview);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerViewMembers.setLayoutManager(linearLayoutManager);
-        GroupMemberAdapter groupMemberAdapter = new GroupMemberAdapter(getActivity(), Queries.getGroupMembers(getArguments().getString("groupId")));
+        //GroupMemberAdapter groupMemberAdapter = new GroupMemberAdapter(getActivity(), Queries.getGroupMembers(getArguments().getString("groupId")));
+        //// TODO: 09/14/2017
+        GroupMemberAdapter groupMemberAdapter = new GroupMemberAdapter(getActivity(), Person.personList);
         recyclerViewMembers.setAdapter(groupMemberAdapter);
 
         ViewHandler.groupMemberAdapter = groupMemberAdapter;

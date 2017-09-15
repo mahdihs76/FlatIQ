@@ -5,8 +5,45 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.mahdihs76.flatiq.view.page.main.MainActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/toolbar_container">
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/main_activity_toolbar"
+        android:background="@color/colorPrimary"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:text="املت"
+            android:textSize="30dp"
+            fontPath="fonts/A.Ghasem.ttf"
+            android:textColor="#ffffff"
+
+         />
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:id="@+id/map_button"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/ic_map"
+          />
+
+
+
+
+    </RelativeLayout>
+
 
     <FrameLayout
+        android:layout_below="@+id/toolbar_container"
+        android:layout_above="@+id/bottom_navigationview"
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
         android:id="@+id/fragment_container"
