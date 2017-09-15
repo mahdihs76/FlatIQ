@@ -1,12 +1,9 @@
 package com.example.mahdihs76.flatiq.server;
 
-import android.util.Log;
-
 import com.backtory.java.internal.BacktoryCallBack;
 import com.backtory.java.internal.BacktoryObject;
 import com.backtory.java.internal.BacktoryQuery;
 import com.backtory.java.internal.BacktoryResponse;
-import com.example.mahdihs76.flatiq.constant.LogTag;
 import com.example.mahdihs76.flatiq.model.Group;
 import com.example.mahdihs76.flatiq.model.Person;
 
@@ -29,9 +26,7 @@ public class WebService {
             public void onResponse(BacktoryResponse<List<BacktoryObject>> response) {
                 if (response.isSuccessful()) {
                     List<BacktoryObject> list = response.body();
-                    Log.i(LogTag.TAG, "onResponse: ");
                     for (BacktoryObject o : list) {
-                        Log.i(LogTag.TAG, "onResponse: " + o.get(Database.COLUMN_NAME).toString());
                         Group.groupList.add(new Group(o.get(Database.COLUMN_GROUP_ID).toString(), o.get(Database.COLUMN_NAME).toString(), o.get(Database.COLUMN_ADMIN_ID).toString(), o.get(Database.COLUMN_LOCATION).toString(), o.get(Database.COLUMN_ACTIVITY).toString(), o.get(Database.COLUMN_MEMBERS).toString(), o.get(Database.COLUMN_SCHEDULE).toString(), o.get(Database.COLUMN_IMAGE_SRC).toString()));
                         ViewHandler.groupsAdapter.notifyDataSetChanged();
                     }
@@ -111,7 +106,27 @@ public class WebService {
         });
 
 
+        setGroups();
+        setPersons();
 
+
+    }
+
+
+    public static void getPersonGroups(String personId) {
+        BacktoryQuery query = new BacktoryQuery(Database.TABLE_PERSON);
+        query.selectKeys(Arrays.asList(Database.COLUMN_FIRST_NAME, Database.COLUMN_LAST_NAME, Database.COLUMN_EMAIL, Database.COLUMN_PASSWORD, Database.COLUMN_PERSON_ID, Database.COLUMN_SCORE, Database.COLUMN_IMAGE, Database.COLUMN_GROUPS));
+        query.whereEqualTo(Database.COLUMN_PERSON_ID, personId);
+        query.findInBackground(new BacktoryCallBack<List<BacktoryObject>>() {
+            @Override
+            public void onResponse(BacktoryResponse<List<BacktoryObject>> backtoryResponse) {
+                if(backtoryResponse.isSuccessful()) {
+                    List<BacktoryObject> list = backtoryResponse.body();
+                    BacktoryObject person = list.get(0);
+                    //TODO fill and notify adapter
+                }
+            }
+        });
     }
 
 

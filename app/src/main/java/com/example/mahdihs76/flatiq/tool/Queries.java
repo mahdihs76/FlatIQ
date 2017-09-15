@@ -21,8 +21,8 @@ public class Queries {
         Double latitude = 0.0;
         try {
             String[] longLat = coordinates.split("-");
-            longitude = Double.parseDouble(longLat[0]);
-            latitude = Double.parseDouble(longLat[1]);
+            longitude = Double.parseDouble(longLat[1]);
+            latitude = Double.parseDouble(longLat[0]);
         } catch (Exception e) {
             e.printStackTrace();
         }

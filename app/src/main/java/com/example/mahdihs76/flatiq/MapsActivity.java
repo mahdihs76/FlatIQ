@@ -1,18 +1,28 @@
 package com.example.mahdihs76.flatiq;
 
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.ArrayList;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+
+    private ArrayList<Double> longitudes = new ArrayList<>();
+    private ArrayList<Double> latitudes = new ArrayList<>();
+    private ArrayList<String> names = new ArrayList<>();
+    private ArrayList<String> activities = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +32,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        longitudes = (ArrayList<Double>) getIntent().getExtras().get(MainActivity.LONGITUDES);
+        latitudes = (ArrayList<Double>) getIntent().getExtras().get(MainActivity.LATITUDES);
+        names = (ArrayList<String>) getIntent().getExtras().get(MainActivity.NAMES);
+        activities = (ArrayList<String>) getIntent().getExtras().get(MainActivity.ACTIVITIES);
     }
 
 
@@ -42,10 +56,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(-34, 151);
 //        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-        mMap.addMarker(new MarkerOptions()
-                .position(sydney)
-                .title("Melbourne")
-                .snippet("Population: 4,137,400"));
+//        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+//        mMap.addMarker(new MarkerOptions()
+//                .position(sydney)
+//                .title("Melbourne")
+//                .snippet("Population: 4,137,400"));
+
+        LatLng latLng = new LatLng(0, 0);
+
+        for(int i = 0; i < longitudes.size(); i++) {
+            latLng = new LatLng(longitudes.get(i), latitudes.get(i));
+            mMap.addMarker(new MarkerOptions()
+                .position(latLng)
+                .snippet(activities.get(i))
+                .title(names.get(i)));
+        }
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
     }
 }
