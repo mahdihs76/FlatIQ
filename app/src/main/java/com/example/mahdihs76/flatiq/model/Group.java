@@ -12,13 +12,14 @@ public class Group {
     private String id;
     private String name;
     private String adminID;
+    private String locationName;
     private String location;
     private String activity;
     private String members;
     private String schedule;
     private String imageSrc;
 
-    public Group(String id, String name, String adminID, String location, String activity, String members, String schedule, String imageSrc) {
+    public Group(String id, String name, String adminID, String location, String locationName,  String activity, String members, String schedule, String imageSrc) {
         this.id = id;
         this.name = name;
         this.adminID = adminID;
@@ -27,6 +28,7 @@ public class Group {
         this.members = members;
         this.schedule = schedule;
         this.imageSrc = imageSrc;
+        this.locationName = locationName;
     }
 
     public String getId() {
@@ -93,6 +95,14 @@ public class Group {
         this.imageSrc = imageSrc;
     }
 
+    public String getLocationName() {
+        return locationName;
+    }
+
+    public void setLocationName(String locationName) {
+        this.locationName = locationName;
+    }
+
     public static ArrayList<String> getGroupID(ArrayList<Group> groups) {
         ArrayList<String> list = new ArrayList<>();
         for(Group g : groups) {
@@ -153,6 +163,14 @@ public class Group {
         ArrayList<String> list = new ArrayList<>();
         for(Group g : groups) {
             list.add(g.getImageSrc());
+        }
+        return list;
+    }
+
+    public static ArrayList<String> getGroupLocationNames(ArrayList<Group> groups) {
+        ArrayList<String> list = new ArrayList<>();
+        for(Group g : groups) {
+            list.add(g.getLocationName());
         }
         return list;
     }

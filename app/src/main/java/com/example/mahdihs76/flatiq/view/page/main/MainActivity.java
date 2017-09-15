@@ -58,12 +58,14 @@ public class MainActivity extends AppCompatActivity {
                 .build());
 
         BacktoryConnection.connect2Server(this);
-        WebService.setGroups();
-        WebService.setPersons();
+//        WebService.setGroups();
+//        WebService.setPersons();
+
+
         ArrayList<Group> groups = new ArrayList<>();
 
-        groups.add(new Group("1000","حاج تقی","2000","طرشت شمالی بوستان طرشت","دوچرخه سواری","حامد","دوشنبه صبح","http://www.waikato.ac.nz/__data/assets/image/0007/292840/fields.jpg"));
-        Group.groupList = groups;
+//        groups.add(new Group("1000","حاج تقی","2000","51.3731899-35.7145295","دوچرخه سواری","حامد","دوشنبه صبح","http://www.waikato.ac.nz/__data/assets/image/0007/292840/fields.jpg"));
+//        Group.groupList = groups;
 
         ArrayList<Person> persons = new ArrayList<>();
         persons.add(new Person("حامد", "شیروانی", "", "", "", "1001", "http://www.beytoote.com/images/stories/sport/hhs879.jpg", "1000"));
@@ -87,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
                 ArrayList<String> names = new ArrayList<>();
                 ArrayList<String> activities = new ArrayList<>();
 //                WebService.setGroups();
-                for (Group g : Group.groupList) {
+                for (Group g : Group.groupList) { //TODO should be changed to getNear with person's coordinates.
                     String location = g.getLocation();
                     String[] coordinates = location.split("-");
                     latitudes.add(Double.parseDouble(coordinates[0]));
@@ -95,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
                     names.add(g.getName());
                     activities.add(g.getActivity());
                 }
+                Log.i(LogTag.TAG, "onClick: " + longitudes);
                 intent.putExtra(MainActivity.LATITUDES, latitudes);
                 intent.putExtra(MainActivity.LONGITUDES, longitudes);
                 intent.putExtra(MainActivity.ACTIVITIES, activities);
@@ -109,10 +112,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public static void fillGroups() {
-        Group.groupList.add(new Group("1000", "varzesh3", "3", "35.7145295-51.3731899", "volleyball", "2-3", "9shanbe ha", "sth.png"));
-        Group.groupList.add(new Group("1001", "yechizi", "2", "35.7382281-51.3752824", "basketball", "2-1", "5shanbe ha", "sth.png"));
-        Group.groupList.add(new Group("1002", "yechiz dige", "1", "35.6770522-51.3919707", "football", "1-3", "shanbe ha", "sth.png"));
-        Group.groupList.add(new Group("1003", "unyeki", "0", "35.7116288-51.4002982", "ping-pong", "4", "hichvaght", "sth.png"));
+        Group.groupList.add(new Group("1000", "varzesh3", "3", "51.3731899-35.7145295", "Tarasht", "volleyball", "2-3", "9shanbe ha", "sth.png"));
+        Group.groupList.add(new Group("1001", "VarzeshKaran", "2", "51.3752824-35.7382281", "Milad Tower", "basketball", "2-1", "5shanbe ha", "sth.png"));
+        Group.groupList.add(new Group("1002", "HamRekaban", "1", "51.3919707-35.6770522", "Allameh Helli High School", "football", "1-3", "shanbe ha", "sth.png"));
+        Group.groupList.add(new Group("1003", "footballistHa", "0", "51.4002982-35.7116288", "Bustan e Laleh", "ping-pong", "4", "hichvaght", "sth.png"));
     }
 
     public static class BottomNavigationViewHelper {
@@ -137,12 +140,12 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 }
-
 
 
 /**
@@ -160,7 +163,6 @@ public class MainActivity extends AppCompatActivity {
 //);
 
 // 2- Add it to activity class :
-
 
 
 // 3- usage (Add font to assets/fonts:

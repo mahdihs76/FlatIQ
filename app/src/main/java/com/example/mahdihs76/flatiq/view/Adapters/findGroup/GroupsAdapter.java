@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -47,7 +46,7 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.MyViewHold
 
         holder.groupName.setText(Group.getGroupName(groups).get(position));
         holder.groupSize.setText(String.valueOf(Queries.getGroupMembers(Group.getGroupID(groups).get(position)).size()));
-        holder.groupLocation.setText(Group.getGroupLocation(groups).get(position));
+        holder.groupLocation.setText(Group.getGroupLocationNames(groups).get(position));
         holder.groupSchedule.setText(Group.getGroupSchedule(groups).get(position));
         holder.groupField.setText(Group.getGroupActivity(groups).get(position));
         Glide.with(context).load(Group.getGroupImageSrc(groups).get(position)).into(holder.groupImage);

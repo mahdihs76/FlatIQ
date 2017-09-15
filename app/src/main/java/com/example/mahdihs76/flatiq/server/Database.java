@@ -24,6 +24,7 @@ public class Database {
     public static final String COLUMN_NAME = "Name";
     public static final String COLUMN_ADMIN_ID = "AdminId";
     public static final String COLUMN_LOCATION = "Location";
+    public static final String COLUMN_LOCATION_NAME = "LocationName";
     public static final String COLUMN_ACTIVITY = "Activity";
     public static final String COLUMN_MEMBERS = "Members";
     public static final String COLUMN_SCHEDULE = "Schedule";
