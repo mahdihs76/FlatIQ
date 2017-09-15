@@ -65,12 +65,15 @@ public class GroupFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Group thisGroup = Queries.getGroupWithId(getArguments().getString("groupId"));
-                WebService.addMember(personID, thisGroup.getId(), getActivity());
-                ViewHandler.groupMemberAdapter.notifyDataSetChanged();
-                if (joinButton.getTag().equals("ok"))
+                if (joinButton.getTag().equals("ok")) {
+                    WebService.addMember(personID, thisGroup.getId());
                     Snackbar.make(view, "شما به گروه " + "\"" + thisGroup.getName() + "\"" + " ملحق شدید!", Snackbar.LENGTH_LONG).show();
-                else
+                }
+                else {
+                    WebService.removeMember(personID, thisGroup.getId());
                     Snackbar.make(view, "شما از گروه " + "\"" + thisGroup.getName() + "\"" + " خارج شدید!", Snackbar.LENGTH_LONG).show();
+                }
+                ViewHandler.groupMemberAdapter.notifyDataSetChanged();
                 switchIcon();
             }
         });
