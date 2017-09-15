@@ -46,9 +46,8 @@ public class MainActivity extends AppCompatActivity {
     public static final String LATITUDES = "latitudes";
     public static final String ACTIVITIES = "activities";
     public static final String NAMES = "names";
-    public static final String IDS = "ids";
 
-    private ImageView button;
+    private Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,6 +129,7 @@ public class MainActivity extends AppCompatActivity {
 }
 
 
+
 /**
  * HELP
  */
@@ -145,6 +145,7 @@ public class MainActivity extends AppCompatActivity {
 //);
 
 // 2- Add it to activity class :
+
 
 
 // 3- usage (Add font to assets/fonts:
