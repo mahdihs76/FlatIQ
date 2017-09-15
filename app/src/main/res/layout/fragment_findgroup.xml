@@ -7,7 +7,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:background="@color/grey">
 
             <com.wang.avi.AVLoadingIndicatorView
                 android:id="@+id/avi"

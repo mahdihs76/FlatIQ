@@ -6,7 +6,8 @@
     <color name="primaryDarkColor">#227a00</color>
     <color name="primaryTextColor">#000000</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="grey">#fafafa</color>
+    <color name="grey">#e8e8e8</color>
 
     <color name="sefid">#ffffff</color>
+    <color name="transColor">#42000000</color>
 </resources>
