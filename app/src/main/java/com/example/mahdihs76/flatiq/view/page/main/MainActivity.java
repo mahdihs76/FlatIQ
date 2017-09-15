@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String LATITUDES = "latitudes";
     public static final String ACTIVITIES = "activities";
     public static final String NAMES = "names";
+    public static final String IDS = "ids";
 
     private Button button;
 
@@ -88,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
                 ArrayList<Double> longitudes = new ArrayList<>();
                 ArrayList<String> names = new ArrayList<>();
                 ArrayList<String> activities = new ArrayList<>();
+                ArrayList<String> ids = new ArrayList<>();
 //                WebService.setGroups();
                 for (Group g : Group.groupList) { //TODO should be changed to getNear with person's coordinates.
                     String location = g.getLocation();
@@ -96,11 +98,13 @@ public class MainActivity extends AppCompatActivity {
                     longitudes.add(Double.parseDouble(coordinates[1]));
                     names.add(g.getName());
                     activities.add(g.getActivity());
+                    ids.add(g.getId());
                 }
                 intent.putExtra(MainActivity.LATITUDES, latitudes);
                 intent.putExtra(MainActivity.LONGITUDES, longitudes);
                 intent.putExtra(MainActivity.ACTIVITIES, activities);
                 intent.putExtra(MainActivity.NAMES, names);
+                intent.putExtra(MainActivity.IDS, ids);
                 MainActivity.this.startActivity(intent);
             }
         });

@@ -2,6 +2,7 @@ package com.example.mahdihs76.flatiq;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 
 import com.example.mahdihs76.flatiq.view.page.main.MainActivity;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -9,6 +10,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
@@ -21,6 +23,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private ArrayList<Double> latitudes = new ArrayList<>();
     private ArrayList<String> names = new ArrayList<>();
     private ArrayList<String> activities = new ArrayList<>();
+    private ArrayList<String> ids = new ArrayList<>();
 
 
     @Override
@@ -35,6 +38,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         latitudes = (ArrayList<Double>) getIntent().getExtras().get(MainActivity.LATITUDES);
         names = (ArrayList<String>) getIntent().getExtras().get(MainActivity.NAMES);
         activities = (ArrayList<String>) getIntent().getExtras().get(MainActivity.ACTIVITIES);
+        ids = (ArrayList<String>) getIntent().getExtras().get(MainActivity.IDS);
+
     }
 
 
@@ -58,8 +63,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             mMap.addMarker(new MarkerOptions()
                     .position(latLng)
                     .snippet(activities.get(i))
-                    .title(names.get(i)));
+                    .title(names.get(i)))
+                    .setTag(ids.get(i));
         }
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+                String id = (String) marker.getTag();
+                Log.i("debug", "onInfoWindowClick: id: " + id);
+            }
+        });
     }
 }
