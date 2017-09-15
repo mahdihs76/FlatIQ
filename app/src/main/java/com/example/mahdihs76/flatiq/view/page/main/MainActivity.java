@@ -1,6 +1,8 @@
 package com.example.mahdihs76.flatiq.view.page.main;
 
 import android.content.Context;
+import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
@@ -10,6 +12,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 
 import com.example.mahdihs76.flatiq.R;
@@ -36,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String ACTIVITIES = "activities";
     public static final String NAMES = "names";
     public static final String IDS = "ids";
+    Fragment findGroupFragment;
 
     private Button button;
 
@@ -62,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
         ViewHandler.groupMemberAdapter = groupMemberAdapter;
 
-        Fragment findGroupFragment = new FindGroupFragment();
+        findGroupFragment = new FindGroupFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, findGroupFragment);
@@ -79,6 +84,21 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigationview);
         bottomNavigationView.setSelectedItemId(R.id.find_group);
         BottomNavigationViewHelper.removeShiftMode(bottomNavigationView);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+
+                    case R.id.find_group:
+                        findGroupFragment = new FindGroupFragment();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,findGroupFragment).commit();
+                        break;
+
+                }
+                return true;
+
+            }
+        });
 
         BacktoryConnection.connect2Server(this);
 

@@ -100,6 +100,7 @@ dependencies {
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     compile 'com.afollestad:easyvideoplayer:0.3.0'
     compile 'com.pegah.backtory:backtory-android-sdk:0.5.1'
+    compile 'com.github.amlcurran.showcaseview:library:5.4.3'
     
 
     testCompile 'junit:junit:4.12'
