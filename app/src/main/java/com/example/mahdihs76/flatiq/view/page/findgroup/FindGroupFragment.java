@@ -10,11 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 
-import com.example.mahdihs76.flatiq.MapsActivity;
+import com.example.mahdihs76.flatiq.view.page.MapsActivity;
 import com.example.mahdihs76.flatiq.R;
 import com.example.mahdihs76.flatiq.model.Group;
 import com.example.mahdihs76.flatiq.server.ViewHandler;
@@ -22,7 +20,6 @@ import com.example.mahdihs76.flatiq.view.Adapters.findGroup.GroupsAdapter;
 import com.example.mahdihs76.flatiq.view.page.main.MainActivity;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * Created by hamed on 09/14/2017.
@@ -38,7 +35,9 @@ public class FindGroupFragment extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerViewGroups.setLayoutManager(linearLayoutManager);
         GroupsAdapter groupsAdapter = new GroupsAdapter(getActivity(), Group.groupList);
+
         ViewHandler.groupsAdapter = groupsAdapter;
+
         recyclerViewGroups.setAdapter(groupsAdapter);
         ImageView imageView= (ImageView) getActivity().findViewById(R.id.map_button);
         imageView.setOnClickListener(new View.OnClickListener() {

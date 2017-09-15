@@ -1,10 +1,11 @@
-package com.example.mahdihs76.flatiq;
+package com.example.mahdihs76.flatiq.view.page;
 
 import android.app.Activity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.mahdihs76.flatiq.R;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.Marker;
 

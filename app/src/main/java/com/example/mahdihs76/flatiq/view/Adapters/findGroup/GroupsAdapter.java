@@ -22,15 +22,10 @@ import java.util.ArrayList;
 
 public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.MyViewHolder> {
 
-    private ArrayList<Group> groups = new ArrayList<>();
-
-
     Context context;
 
     public GroupsAdapter(Context context, ArrayList<Group> groups) {
         this.context = context;
-        this.groups = groups;
-
     }
 
     @Override
@@ -44,17 +39,17 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.MyViewHold
     public void onBindViewHolder(MyViewHolder holder, final int position) {
 
 
-        holder.groupName.setText(Group.getGroupName(groups).get(position));
-        holder.groupSize.setText(String.valueOf(Queries.getGroupMembers(Group.getGroupID(groups).get(position)).size()));
-        holder.groupLocation.setText(Group.getGroupLocationNames(groups).get(position));
-        holder.groupSchedule.setText(Group.getGroupSchedule(groups).get(position));
-        holder.groupField.setText(Group.getGroupActivity(groups).get(position));
-        Glide.with(context).load(Group.getGroupImageSrc(groups).get(position)).into(holder.groupImage);
+        holder.groupName.setText(Group.getGroupName(Group.groupList).get(position));
+        holder.groupSize.setText(String.valueOf(Queries.getGroupMembers(Group.getGroupID(Group.groupList).get(position)).size()));
+        holder.groupLocation.setText(Group.getGroupLocationNames(Group.groupList).get(position));
+        holder.groupSchedule.setText(Group.getGroupSchedule(Group.groupList).get(position));
+        holder.groupField.setText(Group.getGroupActivity(Group.groupList).get(position));
+        Glide.with(context).load(Group.getGroupImageSrc(Group.groupList).get(position)).into(holder.groupImage);
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
-                bundle.putString("groupId", Group.getGroupID(groups).get(position));
+                bundle.putString("groupId", Group.getGroupID(Group.groupList).get(position));
                 Fragment groupFragment = new GroupFragment();
                 groupFragment.setArguments(bundle);
                 ((FragmentActivity) context).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, groupFragment).commit();
@@ -65,7 +60,7 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.MyViewHold
 
     @Override
     public int getItemCount() {
-        return groups.size();
+        return Group.groupList.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -87,6 +82,7 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.MyViewHold
             groupSchedule = (TextView) itemView.findViewById(R.id.group_schedule);
             groupField = (TextView) itemView.findViewById(R.id.group_field);
             cardView = (CardView) itemView.findViewById(R.id.group_card);
+
 
 
         }

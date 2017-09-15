@@ -20,7 +20,7 @@ import java.util.List;
 
 public class WebService {
     public static void setGroups() {
-        Group.groupList = new ArrayList<>();
+
         Log.i(LogTag.TAG, "onResponse: ");
 
         BacktoryQuery query = new BacktoryQuery(Database.TABLE_GROUP);
@@ -28,15 +28,15 @@ public class WebService {
         query.findInBackground(new BacktoryCallBack<List<BacktoryObject>>() {
             @Override
             public void onResponse(BacktoryResponse<List<BacktoryObject>> response) {
-                Log.i(LogTag.TAG, "onResponse: ");
-
+                Log.i(LogTag.TAG, "123");
                 if (response.isSuccessful()) {
                     List<BacktoryObject> list = response.body();
                     for (BacktoryObject o : list) {
+                        Log.i(LogTag.TAG, "onResponse: " + o);
                         Group.groupList.add(new Group(o.get(Database.COLUMN_GROUP_ID).toString(), o.get(Database.COLUMN_NAME).toString(), o.get(Database.COLUMN_ADMIN_ID).toString(), o.get(Database.COLUMN_LOCATION).toString(), o.get(Database.COLUMN_LOCATION_NAME).toString(), o.get(Database.COLUMN_ACTIVITY).toString(), o.get(Database.COLUMN_MEMBERS).toString(), o.get(Database.COLUMN_SCHEDULE).toString(), o.get(Database.COLUMN_IMAGE_SRC).toString()));
-                        Log.i(LogTag.TAG, "onResponse: " + o.get(Database.COLUMN_IMAGE_SRC));
-                        ViewHandler.groupsAdapter.notifyDataSetChanged();
+                        Log.i(LogTag.TAG, "onResponse:  11" + Group.groupList.size());
                     }
+                    ViewHandler.groupsAdapter.notifyDataSetChanged();
                 }
             }
         });

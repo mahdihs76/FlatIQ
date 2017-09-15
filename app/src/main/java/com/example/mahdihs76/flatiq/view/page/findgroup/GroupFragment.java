@@ -55,10 +55,8 @@ public class GroupFragment extends Fragment {
         recyclerViewMembers.setLayoutManager(linearLayoutManager);
         //GroupMemberAdapter groupMemberAdapter = new GroupMemberAdapter(getActivity(), Queries.getGroupMembers(getArguments().getString("groupId")));
         //// TODO: 09/14/2017
-        GroupMemberAdapter groupMemberAdapter = new GroupMemberAdapter(getActivity(), Person.personList);
-        recyclerViewMembers.setAdapter(groupMemberAdapter);
+        recyclerViewMembers.setAdapter(ViewHandler.groupMemberAdapter);
 
-        ViewHandler.groupMemberAdapter = groupMemberAdapter;
 
         return view;
 
