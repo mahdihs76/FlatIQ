@@ -47,9 +47,9 @@ public class MainActivity extends AppCompatActivity {
                 .setFontAttrId(R.attr.fontPath)
                 .build());
 
-        BacktoryConnection.connect2Server(this);
+        /*BacktoryConnection.connect2Server(this);
         WebService.setGroups();
-        WebService.setPersons();
+        WebService.setPersons();*/
         ArrayList<Group> groups = new ArrayList<>();
 
         groups.add(new Group("1000","حاج تقی","2000","طرشت شمالی بوستان طرشت","دوچرخه سواری","حامد","دوشنبه صبح","http://www.waikato.ac.nz/__data/assets/image/0007/292840/fields.jpg"));
