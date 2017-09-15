@@ -21,7 +21,6 @@ import com.example.mahdihs76.flatiq.server.WebService;
 import com.example.mahdihs76.flatiq.tool.Queries;
 import com.example.mahdihs76.flatiq.view.Adapters.findGroup.GroupMemberAdapter;
 import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.charts.HorizontalBarChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
