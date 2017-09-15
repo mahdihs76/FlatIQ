@@ -5,5 +5,5 @@ package com.example.mahdihs76.flatiq.constant;
  */
 
 public class Constant {
-    public final static String SHOP_URL = "http://www.digikala.com/Search/Category-Aerobic/#!/Category-Sport-Entertainment/Category-Sport/Category-Aerobic/";
+    public final static String SHOP_URL = "http://www.bamilo.com/fitness-bodybuilding/?source=cst";
 }

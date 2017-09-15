@@ -2,6 +2,7 @@ package com.example.mahdihs76.flatiq.view.page.findgroup;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,8 +15,11 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.mahdihs76.flatiq.R;
+import com.example.mahdihs76.flatiq.model.Group;
 import com.example.mahdihs76.flatiq.server.ViewHandler;
+import com.example.mahdihs76.flatiq.server.WebService;
 import com.example.mahdihs76.flatiq.tool.Queries;
+import com.example.mahdihs76.flatiq.view.Adapters.findGroup.GroupMemberAdapter;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.HorizontalBarChart;
 import com.github.mikephil.charting.data.BarData;
@@ -36,13 +40,15 @@ public class GroupFragment extends Fragment {
     TextView groupField;
     CardView cardView;
     ImageView joinButton;
+    BarChart chart;
+    View view;
 
     public static final String personID = "1000";
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.group_fragment, container, false);
+        view = inflater.inflate(R.layout.group_fragment, container, false);
 
         ImageView groupImage = (ImageView) view.findViewById(R.id.group_image);
         groupName = (TextView) view.findViewById(R.id.group_name);
@@ -51,32 +57,36 @@ public class GroupFragment extends Fragment {
         groupField = (TextView) view.findViewById(R.id.group_field);
         cardView = (CardView) view.findViewById(R.id.group_card);
         joinButton = (ImageView) view.findViewById(R.id.join_btn);
+        chart = (BarChart) view.findViewById(R.id.group_chart);
+
 
         joinButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                WebService.addMember(personID, Queries.getGroupWithId(getArguments().getString("groupId")).getId(), getActivity());
-//                Log.i("debug", "onClick person's groups: " + Queries.getGroupWithId(getArguments().getString("groupId")).getMembers());
-//                Log.i("debug", "onClick group's members: " + Queries.getPersonWithId(personID).getGroups());
+                Group thisGroup = Queries.getGroupWithId(getArguments().getString("groupId"));
+                WebService.addMember(personID, thisGroup.getId(), getActivity());
+                ViewHandler.groupMemberAdapter.notifyDataSetChanged();
+                Snackbar.make(view, "شما به گروه " + "\"" + thisGroup.getName() + "\"" + " ملحق شدید!", Snackbar.LENGTH_LONG).show();
             }
         });
 
-        Glide.with(getActivity()).load(Queries.getGroupWithId(getArguments().getString("groupId")).getImageSrc()).into(groupImage);
-        groupName.setText(Queries.getGroupWithId(getArguments().getString("groupId")).getName());
-        groupLocation.setText(Queries.getGroupWithId(getArguments().getString("groupId")).getLocationName());
-        groupSchedule.setText(Queries.getGroupWithId(getArguments().getString("groupId")).getSchedule());
-        groupField.setText(Queries.getGroupWithId(getArguments().getString("groupId")).getActivity());
+        Group group = Queries.getGroupWithId(getArguments().getString("groupId"));
+        if (group != null) {
+            Glide.with(getActivity()).load(group.getImageSrc()).into(groupImage);
+            groupName.setText(group.getName());
+            groupLocation.setText(group.getLocationName());
+            groupSchedule.setText(group.getSchedule());
+            groupField.setText(group.getActivity());
+        }
 
 
         RecyclerView recyclerViewMembers = (RecyclerView) view.findViewById(R.id.group_members_recyclerview);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerViewMembers.setLayoutManager(linearLayoutManager);
-        //GroupMemberAdapter groupMemberAdapter = new GroupMemberAdapter(getActivity(), Queries.getGroupMembers(getArguments().getString("groupId")));
-        //// TODO: 09/14/2017
 
-        ViewHandler.groupMemberAdapter =new GroupMemberAdapter(getActivity(), Queries.getGroupMembers(getArguments().getString("groupId")));
+        ViewHandler.groupMemberAdapter = new GroupMemberAdapter(getActivity(), Queries.getGroupMembers(getArguments().getString("groupId")));
         recyclerViewMembers.setAdapter(ViewHandler.groupMemberAdapter);
-        BarChart chart=(BarChart)view.findViewById(R.id.group_chart);
+
         ArrayList<BarEntry> entries = new ArrayList<>();
         entries.add(new BarEntry(70f, 0));
         entries.add(new BarEntry(68f, 1));
@@ -94,28 +104,17 @@ public class GroupFragment extends Fragment {
         labels.add("پنج شنبه");
         labels.add("جمعه");
 
-
         BarData data = new BarData(labels, dataset);
         chart.setData(data);
         chart.setDescription("");
-       // int color = getResources().getColor(R.color.light_text_holiday);
 
-
-
-
-      //  dataset.setColors(ColorTemplate.createColors(new int[]{color}));
         dataset.setColors(ColorTemplate.COLORFUL_COLORS);
-        chart.animateXY(1500,1500);
+        chart.animateXY(3000, 3000);
         chart.getAxisLeft().setAxisMaxValue(80f);
         chart.getAxisLeft().setEnabled(false);
         chart.getAxisRight().setAxisMaxValue(80f);
         chart.getAxisRight().setEnabled(false);
 
-
         return view;
-
-
     }
-
-
 }

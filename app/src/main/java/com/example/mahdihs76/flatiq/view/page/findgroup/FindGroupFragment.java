@@ -51,7 +51,7 @@ public class FindGroupFragment extends Fragment {
                 ArrayList<String> names = new ArrayList<>();
                 ArrayList<String> activities = new ArrayList<>();
                 ArrayList<String> ids = new ArrayList<>();
-//                WebService.setGroups();
+
                 Log.i("debug", "onClick: findfragment " + Group.groupList);
                 for (Group g : Group.groupList) {
                     try {
