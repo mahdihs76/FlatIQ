@@ -88,5 +88,12 @@ public class Queries {
         return null;
     }
 
-
+    public static Person getPersonWithId(String id) {
+        for (Person person: Person.personList) {
+            if (person.getId().equals(id)){
+                return person;
+            }
+        }
+        return null;
+    }
 }

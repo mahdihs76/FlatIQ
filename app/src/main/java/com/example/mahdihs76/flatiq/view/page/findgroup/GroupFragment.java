@@ -15,7 +15,9 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.mahdihs76.flatiq.R;
 import com.example.mahdihs76.flatiq.server.ViewHandler;
+import com.example.mahdihs76.flatiq.server.WebService;
 import com.example.mahdihs76.flatiq.tool.Queries;
+import com.example.mahdihs76.flatiq.view.Adapters.findGroup.GroupMemberAdapter;
 
 /**
  * Created by hamed on 09/14/2017.
@@ -27,6 +29,10 @@ public class GroupFragment extends Fragment {
     TextView groupSchedule;
     TextView groupField;
     CardView cardView;
+    ImageView joinButton;
+
+    public static final String personID = "1000";
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -38,6 +44,16 @@ public class GroupFragment extends Fragment {
         groupSchedule = (TextView) view.findViewById(R.id.group_schedule);
         groupField = (TextView) view.findViewById(R.id.group_field);
         cardView = (CardView) view.findViewById(R.id.group_card);
+        joinButton = (ImageView) view.findViewById(R.id.join_btn);
+
+        joinButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                WebService.addMember(personID, Queries.getGroupWithId(getArguments().getString("groupId")).getId(), getActivity());
+//                Log.i("debug", "onClick person's groups: " + Queries.getGroupWithId(getArguments().getString("groupId")).getMembers());
+//                Log.i("debug", "onClick group's members: " + Queries.getPersonWithId(personID).getGroups());
+            }
+        });
 
         Glide.with(getActivity()).load(Queries.getGroupWithId(getArguments().getString("groupId")).getImageSrc()).into(groupImage);
         groupName.setText(Queries.getGroupWithId(getArguments().getString("groupId")).getName());
@@ -49,8 +65,9 @@ public class GroupFragment extends Fragment {
         RecyclerView recyclerViewMembers = (RecyclerView) view.findViewById(R.id.group_members_recyclerview);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerViewMembers.setLayoutManager(linearLayoutManager);
-        //GroupMemberAdapter groupMemberAdapter = new GroupMemberAdapter(getActivity(), Queries.getGroupMembers(getArguments().getString("groupId")));
         //// TODO: 09/14/2017
+
+        ViewHandler.groupMemberAdapter =new GroupMemberAdapter(getActivity(), Queries.getGroupMembers(getArguments().getString("groupId")));
         recyclerViewMembers.setAdapter(ViewHandler.groupMemberAdapter);
 
 

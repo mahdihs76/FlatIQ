@@ -1,5 +1,6 @@
 package com.example.mahdihs76.flatiq.server;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.backtory.java.internal.BacktoryCallBack;
@@ -8,6 +9,8 @@ import com.backtory.java.internal.BacktoryQuery;
 import com.backtory.java.internal.BacktoryResponse;
 import com.example.mahdihs76.flatiq.model.Group;
 import com.example.mahdihs76.flatiq.model.Person;
+import com.example.mahdihs76.flatiq.tool.Queries;
+import com.example.mahdihs76.flatiq.view.Adapters.findGroup.GroupMemberAdapter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,6 +24,8 @@ public class WebService {
     public static void setGroups() {
 
 
+        Group.groupList = new ArrayList<>();
+
         BacktoryQuery query = new BacktoryQuery(Database.TABLE_GROUP);
         query.selectKeys(Arrays.asList(Database.COLUMN_GROUP_ID, Database.COLUMN_NAME, Database.COLUMN_ADMIN_ID, Database.COLUMN_LOCATION, Database.COLUMN_ACTIVITY, Database.COLUMN_MEMBERS, Database.COLUMN_SCHEDULE, Database.COLUMN_IMAGE_SRC, Database.COLUMN_LOCATION_NAME));
         query.findInBackground(new BacktoryCallBack<List<BacktoryObject>>() {
@@ -32,7 +37,6 @@ public class WebService {
                         Group.groupList.add(new Group(o.get(Database.COLUMN_GROUP_ID).toString(), o.get(Database.COLUMN_NAME).toString(), o.get(Database.COLUMN_ADMIN_ID).toString(), o.get(Database.COLUMN_LOCATION).toString(), o.get(Database.COLUMN_LOCATION_NAME).toString(), o.get(Database.COLUMN_ACTIVITY).toString(), o.get(Database.COLUMN_MEMBERS).toString(), o.get(Database.COLUMN_SCHEDULE).toString(), o.get(Database.COLUMN_IMAGE_SRC).toString()));
                     }
                     ViewHandler.groupsAdapter.notifyDataSetChanged();
-                    Log.i("debug", "onResponse: " + Group.groupList);
                 }
             }
         });
@@ -54,7 +58,9 @@ public class WebService {
                     List<BacktoryObject> list = response.body();
                     for (BacktoryObject o : list) {
                         Person.personList.add(new Person(o.get(Database.COLUMN_FIRST_NAME).toString(), o.get(Database.COLUMN_LAST_NAME).toString(), o.get(Database.COLUMN_EMAIL).toString(), o.get(Database.COLUMN_PASSWORD).toString(), o.get(Database.COLUMN_PERSON_ID).toString(), o.get(Database.COLUMN_SCORE).toString(), o.get(Database.COLUMN_IMAGE).toString(), o.get(Database.COLUMN_GROUPS).toString()));
+
                         ViewHandler.groupMemberAdapter.notifyDataSetChanged();
+
                     }
                 }
             }
@@ -63,7 +69,7 @@ public class WebService {
     }
 
 
-    public static void addMember(final String memberID, final String groupID) {
+    public static void addMember(final String memberID, final String groupID, final Context context) {
 
 
         BacktoryQuery query1 = new BacktoryQuery(Database.TABLE_GROUP);
@@ -80,6 +86,10 @@ public class WebService {
                         @Override
                         public void onResponse(BacktoryResponse<Void> backtoryResponse) {
                             //do sth?
+                            //this is group
+                            Queries.getGroupWithId(groupID).setMembers(Queries.getGroupWithId(groupID).getMembers() + "-" + memberID);
+                            ViewHandler.groupMemberAdapter = new GroupMemberAdapter(context, Queries.getGroupMembers(groupID));
+
                         }
                     });
 
@@ -101,6 +111,16 @@ public class WebService {
                         @Override
                         public void onResponse(BacktoryResponse<Void> backtoryResponse) {
                             //do sth?
+                            //this is person
+                            Queries.getPersonWithId(memberID).setGroups(Queries.getPersonWithId(memberID).getGroups() + "-" + groupID);
+                            try {
+                                Log.i("debug", "onResponse: members of group " + Queries.getGroupWithId(groupID).getMembers());
+                                Log.i("debug", "onResponse: groups of person " + Queries.getPersonWithId(memberID).getGroups());
+                                Log.i("debug", "onResponse: groupid: " + groupID + " personid: " + memberID);
+                            } catch (NullPointerException n) {
+                                Log.i("debug", "onResponse: null " + Person.personList);
+                            }
+                            ViewHandler.groupMemberAdapter = new GroupMemberAdapter(context, Queries.getGroupMembers(groupID));
                         }
                     });
                 }
@@ -108,8 +128,8 @@ public class WebService {
         });
 
 
-        setGroups();
-        setPersons();
+//        setGroups();
+//        setPersons();
 
 
     }
