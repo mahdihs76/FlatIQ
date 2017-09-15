@@ -12,7 +12,7 @@
     </item>
     <item
         android:title="گروه ها"
-        android:icon="@drawable/ic_find_group"
+        android:icon="@drawable/ic_teamwork"
 
         android:id="@+id/find_group"
         app:showAsAction="always">

@@ -1,5 +1,7 @@
 package com.example.mahdihs76.flatiq.server;
 
+import android.util.Log;
+
 import com.backtory.java.internal.BacktoryCallBack;
 import com.backtory.java.internal.BacktoryObject;
 import com.backtory.java.internal.BacktoryQuery;
@@ -30,6 +32,7 @@ public class WebService {
                         Group.groupList.add(new Group(o.get(Database.COLUMN_GROUP_ID).toString(), o.get(Database.COLUMN_NAME).toString(), o.get(Database.COLUMN_ADMIN_ID).toString(), o.get(Database.COLUMN_LOCATION).toString(), o.get(Database.COLUMN_LOCATION_NAME).toString(), o.get(Database.COLUMN_ACTIVITY).toString(), o.get(Database.COLUMN_MEMBERS).toString(), o.get(Database.COLUMN_SCHEDULE).toString(), o.get(Database.COLUMN_IMAGE_SRC).toString()));
                     }
                     ViewHandler.groupsAdapter.notifyDataSetChanged();
+                    Log.i("debug", "onResponse: " + Group.groupList);
                 }
             }
         });
