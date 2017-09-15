@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 
 import com.example.mahdihs76.flatiq.R;
+import com.example.mahdihs76.flatiq.constant.Constant;
 import com.example.mahdihs76.flatiq.view.page.main.MainActivity;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -43,9 +44,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         if (getIntent() != null && getIntent().getExtras() != null) {
-            longitudes = (ArrayList<Double>) getIntent().getExtras().get(MainActivity.LONGITUDES);
-            latitudes = (ArrayList<Double>) getIntent().getExtras().get(MainActivity.LATITUDES);
-            ids = (ArrayList<String>) getIntent().getExtras().get(MainActivity.IDS);
+            longitudes = (ArrayList<Double>) getIntent().getExtras().get(Constant.LONGITUDES);
+            latitudes = (ArrayList<Double>) getIntent().getExtras().get(Constant.LATITUDES);
+            ids = (ArrayList<String>) getIntent().getExtras().get(Constant.IDS);
         }
     }
 

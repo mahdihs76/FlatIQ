@@ -14,9 +14,9 @@
 
 
     <style name="CustomShowcaseTheme" parent="ShowcaseView.Light">
-        <item name="sv_backgroundColor">#80dd2c00</item>
-        <item name="sv_showcaseColor">#a30000</item>
-        <item name="sv_buttonText">بعدی</item>
+        <item name="sv_backgroundColor">#cc8dd26d</item>
+        <item name="sv_showcaseColor">@color/primaryDarkColor</item>
+        <item name="sv_buttonText">فهمیدم</item>
         <item name="sv_tintButtonColor">false</item>
         <item name="sv_titleTextAppearance">@style/CustomTitle</item>
     </style>

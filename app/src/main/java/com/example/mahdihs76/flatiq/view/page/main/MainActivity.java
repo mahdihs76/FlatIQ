@@ -24,10 +24,13 @@ import com.example.mahdihs76.flatiq.model.Person;
 import com.example.mahdihs76.flatiq.server.BacktoryConnection;
 import com.example.mahdihs76.flatiq.server.ViewHandler;
 import com.example.mahdihs76.flatiq.server.WebService;
+import com.example.mahdihs76.flatiq.tool.CaseView;
+import com.example.mahdihs76.flatiq.tool.GuideUtils;
 import com.example.mahdihs76.flatiq.view.Adapters.findGroup.GroupMemberAdapter;
 import com.example.mahdihs76.flatiq.view.page.findgroup.FindGroupFragment;
 import com.example.mahdihs76.flatiq.view.page.findgroup.GroupFragment;
 import com.example.mahdihs76.flatiq.view.page.shop.ShopFragment;
+import com.github.amlcurran.showcaseview.targets.PointTarget;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -37,11 +40,9 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final String LONGITUDES = "longitudes";
-    public static final String LATITUDES = "latitudes";
-    public static final String ACTIVITIES = "activities";
-    public static final String NAMES = "names";
-    public static final String IDS = "ids";
+
+    ArrayList<CaseView> targets = new ArrayList<>();
+
     Fragment findGroupFragment;
     Fragment shopFragment;
 
@@ -104,6 +105,19 @@ public class MainActivity extends AppCompatActivity {
 
         BacktoryConnection.connect2Server(this);
 
+        setPointTargets();
+
+
+    }
+
+    private void setPointTargets() {
+        int height = this.getWindow().getWindowManager().getDefaultDisplay().getHeight();
+        int width = this.getWindow().getWindowManager().getDefaultDisplay().getWidth();
+//        targets.add(new CaseView("کاربر", "صفحه‌ی کاربری خود را مشاهده و شخصی‌سازی کنید.", new PointTarget(120, height - 100))); //karbar
+        targets.add(new CaseView("قسمت فروش", "از محصولات ورزشی دیدن کرده و خرید کنید.", new PointTarget(width - 120, height- 100))); //mahsulat
+        targets.add(new CaseView("گروه‌ها", "گروه‌های مطلوب خود را بیابید", new PointTarget(width/2 - 120, height - 100))); //findgroup
+        targets.add(new CaseView("اخبار", "از تازه‌های دنیای ورزش و سلامت مطلع شوید.", new PointTarget(width/2 + 120, height - 100))); //news
+        GuideUtils.showGuide(this, targets, 0);
 
     }
 

@@ -13,13 +13,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-
-import com.example.mahdihs76.flatiq.view.page.map.MapsActivity;
 import com.example.mahdihs76.flatiq.R;
+import com.example.mahdihs76.flatiq.constant.Constant;
 import com.example.mahdihs76.flatiq.model.Group;
 import com.example.mahdihs76.flatiq.server.ViewHandler;
 import com.example.mahdihs76.flatiq.view.Adapters.findGroup.GroupsAdapter;
-import com.example.mahdihs76.flatiq.view.page.main.MainActivity;
+import com.example.mahdihs76.flatiq.view.page.map.MapsActivity;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.ArrayList;
@@ -72,11 +71,11 @@ public class FindGroupFragment extends Fragment {
                     }
                 }
 
-                intent.putExtra(MainActivity.LATITUDES, latitudes);
-                intent.putExtra(MainActivity.LONGITUDES, longitudes);
-                intent.putExtra(MainActivity.ACTIVITIES, activities);
-                intent.putExtra(MainActivity.NAMES, names);
-                intent.putExtra(MainActivity.IDS, ids);
+                intent.putExtra(Constant.LATITUDES, latitudes);
+                intent.putExtra(Constant.LONGITUDES, longitudes);
+                intent.putExtra(Constant.ACTIVITIES, activities);
+                intent.putExtra(Constant.NAMES, names);
+                intent.putExtra(Constant.IDS, ids);
                 startActivity(intent);
             }
         });
