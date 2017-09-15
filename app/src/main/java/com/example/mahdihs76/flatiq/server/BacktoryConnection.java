@@ -1,12 +1,14 @@
 package com.example.mahdihs76.flatiq.server;
 
 import android.app.Activity;
+import android.util.Log;
 
 import com.backtory.java.internal.BacktoryClient;
 import com.backtory.java.internal.BacktoryUser;
 import com.backtory.java.internal.Config;
 import com.example.mahdihs76.flatiq.constant.BacktoryAdminUser;
 import com.example.mahdihs76.flatiq.constant.BacktoryKey;
+import com.example.mahdihs76.flatiq.constant.LogTag;
 import com.example.mahdihs76.flatiq.server.callbacks.BacktoryLoginCallBack;
 
 
@@ -21,7 +23,6 @@ public class BacktoryConnection {
                 .initObjectStorage(BacktoryKey.BACKTORY_OBJECT_STORAGE_ID)
                 .build(), activity);
 
-
-        BacktoryUser.loginInBackground(BacktoryAdminUser.USERNAME, BacktoryAdminUser.PASSWORD, new BacktoryLoginCallBack());
+       BacktoryUser.loginInBackground(BacktoryAdminUser.USERNAME, BacktoryAdminUser.PASSWORD, new BacktoryLoginCallBack());
     }
 }

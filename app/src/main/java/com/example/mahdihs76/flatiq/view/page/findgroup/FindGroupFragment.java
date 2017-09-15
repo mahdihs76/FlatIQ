@@ -7,15 +7,14 @@ import android.support.design.widget.BottomSheetDialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 
-import com.example.mahdihs76.flatiq.MapsActivity;
+import com.example.mahdihs76.flatiq.view.page.MapsActivity;
 import com.example.mahdihs76.flatiq.R;
 import com.example.mahdihs76.flatiq.model.Group;
 import com.example.mahdihs76.flatiq.server.ViewHandler;
@@ -23,7 +22,6 @@ import com.example.mahdihs76.flatiq.view.Adapters.findGroup.GroupsAdapter;
 import com.example.mahdihs76.flatiq.view.page.main.MainActivity;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * Created by hamed on 09/14/2017.
@@ -39,7 +37,9 @@ public class FindGroupFragment extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerViewGroups.setLayoutManager(linearLayoutManager);
         GroupsAdapter groupsAdapter = new GroupsAdapter(getActivity(), Group.groupList);
+
         ViewHandler.groupsAdapter = groupsAdapter;
+
         recyclerViewGroups.setAdapter(groupsAdapter);
         ImageView imageView= (ImageView) getActivity().findViewById(R.id.map_button);
         imageView.setOnClickListener(new View.OnClickListener() {
@@ -52,15 +52,21 @@ public class FindGroupFragment extends Fragment {
                 ArrayList<String> activities = new ArrayList<>();
                 ArrayList<String> ids = new ArrayList<>();
 //                WebService.setGroups();
+                Log.i("debug", "onClick: findfragment " + Group.groupList);
                 for (Group g : Group.groupList) {
-                    String location = g.getLocation();
-                    String[] coordinates = location.split("-");
-                    latitudes.add(Double.parseDouble(coordinates[0]));
-                    longitudes.add(Double.parseDouble(coordinates[1]));
-                    names.add(g.getName());
-                    ids.add(g.getId());
-                    activities.add(g.getActivity());
+                    try {
+                        String location = g.getLocation();
+                        String[] coordinates = location.split("-");
+                        latitudes.add(Double.parseDouble(coordinates[0]));
+                        longitudes.add(Double.parseDouble(coordinates[1]));
+                        names.add(g.getName());
+                        ids.add(g.getId());
+                        activities.add(g.getActivity());
+                    } catch (Exception e) {
+                        Log.i("debug", "onClick: " + e.getMessage());
+                    }
                 }
+
                 intent.putExtra(MainActivity.LATITUDES, latitudes);
                 intent.putExtra(MainActivity.LONGITUDES, longitudes);
                 intent.putExtra(MainActivity.ACTIVITIES, activities);

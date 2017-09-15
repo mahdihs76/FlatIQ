@@ -1,12 +1,10 @@
-package com.example.mahdihs76.flatiq;
+package com.example.mahdihs76.flatiq.view.page;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 
-import com.example.mahdihs76.flatiq.view.page.findgroup.GroupFragment;
+import com.example.mahdihs76.flatiq.R;
 import com.example.mahdihs76.flatiq.view.page.main.MainActivity;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;

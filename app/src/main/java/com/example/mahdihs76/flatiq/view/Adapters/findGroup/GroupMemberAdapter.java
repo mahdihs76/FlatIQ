@@ -19,14 +19,10 @@ import java.util.ArrayList;
 
 public class GroupMemberAdapter extends RecyclerView.Adapter<GroupMemberAdapter.MyViewHolder> {
 
-    private ArrayList<Person> persons = new ArrayList<>();
-
-
     Context context;
 
     public GroupMemberAdapter(Context context, ArrayList<Person> persons) {
         this.context = context;
-        this.persons = persons;
 
     }
 
@@ -41,16 +37,16 @@ public class GroupMemberAdapter extends RecyclerView.Adapter<GroupMemberAdapter.
     public void onBindViewHolder(MyViewHolder holder, final int position) {
 
 
-        holder.memberName.setText(Person.getPersonFirstName(persons).get(position)+" "+Person.getPersonLastName(persons).get(position));
-        holder.memberRating.setText(Person.getPersonScore(persons).get(position));
+        holder.memberName.setText(Person.getPersonFirstName(Person.personList).get(position)+" "+Person.getPersonLastName(Person.personList).get(position));
+        holder.memberRating.setText(Person.getPersonScore(Person.personList).get(position));
 
-        Glide.with(context).load(Person.getPersonImageSrc(persons).get(position)).apply(RequestOptions.circleCropTransform()).into(holder.memberImage);
+        Glide.with(context).load(Person.getPersonImageSrc(Person.personList).get(position)).apply(RequestOptions.circleCropTransform()).into(holder.memberImage);
 
     }
 
     @Override
     public int getItemCount() {
-        return persons.size();
+        return Person.personList.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
