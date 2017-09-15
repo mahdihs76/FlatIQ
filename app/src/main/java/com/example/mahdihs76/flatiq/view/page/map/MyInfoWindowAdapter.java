@@ -1,4 +1,4 @@
-package com.example.mahdihs76.flatiq.view.page;
+package com.example.mahdihs76.flatiq.view.page.map;
 
 import android.app.Activity;
 import android.util.Log;
@@ -27,7 +27,6 @@ public class MyInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
     public View getInfoWindow(Marker marker) {
         View v = activity.getLayoutInflater().inflate(R.layout.map_test, null);
         button = (Button) v.findViewById(R.id.map_button);
-        Log.i("debug", "getInfoWindow: " + button);
         button.setText(marker.getTitle());
 
         return v;

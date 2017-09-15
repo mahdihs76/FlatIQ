@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 
-import com.example.mahdihs76.flatiq.view.page.MapsActivity;
+import com.example.mahdihs76.flatiq.view.page.map.MapsActivity;
 import com.example.mahdihs76.flatiq.R;
 import com.example.mahdihs76.flatiq.model.Group;
 import com.example.mahdihs76.flatiq.server.ViewHandler;
@@ -23,8 +23,6 @@ import com.example.mahdihs76.flatiq.view.page.main.MainActivity;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.ArrayList;
-
-import static android.view.View.GONE;
 
 /**
  * Created by hamed on 09/14/2017.
