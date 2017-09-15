@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String LATITUDES = "latitudes";
     public static final String ACTIVITIES = "activities";
     public static final String NAMES = "names";
+    public static final String IDS = "ids";
 
     private Button button;
 
