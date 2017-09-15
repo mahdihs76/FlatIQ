@@ -16,7 +16,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.mahdihs76.flatiq.R;
 import com.example.mahdihs76.flatiq.model.Group;
-import com.example.mahdihs76.flatiq.server.ViewHandler;
+import com.example.mahdihs76.flatiq.view.ViewHandler;
 import com.example.mahdihs76.flatiq.server.WebService;
 import com.example.mahdihs76.flatiq.tool.Queries;
 import com.example.mahdihs76.flatiq.view.Adapters.findGroup.GroupMemberAdapter;

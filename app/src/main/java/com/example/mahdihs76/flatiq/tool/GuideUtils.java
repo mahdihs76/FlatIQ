@@ -26,7 +26,7 @@ public class GuideUtils {
         new ShowcaseView.Builder(activity, true)
                 .setTarget(list.get(id).getTargetView())
                 .replaceEndButton(button)
-                .singleShot(0)
+//                .singleShot(0)
                 .setContentTitle(list.get(id).getTitle())
                 .setContentText(list.get(id).getDescription())
                 .withHoloShowcase()
@@ -34,7 +34,7 @@ public class GuideUtils {
                 .setShowcaseEventListener(new OnShowcaseEventListener() {
                     @Override
                     public void onShowcaseViewHide(ShowcaseView showcaseView) {
-                        if (id < list.size()) {
+                        if (id < list.size()-1) {
                             showGuide(activity, list, id + 1);
                         }
                     }
@@ -53,6 +53,7 @@ public class GuideUtils {
                     public void onShowcaseViewTouchBlocked(MotionEvent motionEvent) {
 
                     }
+
                 })
                 .hideOnTouchOutside()
                 .build();

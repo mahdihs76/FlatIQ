@@ -8,7 +8,6 @@ import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.BottomSheetDialogFragment;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.widget.AppCompatCheckBox;
-import android.support.v7.widget.ViewUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +16,7 @@ import android.widget.Toast;
 
 import com.example.mahdihs76.flatiq.R;
 import com.example.mahdihs76.flatiq.model.Group;
-import com.example.mahdihs76.flatiq.server.ViewHandler;
+import com.example.mahdihs76.flatiq.view.ViewHandler;
 
 import java.util.ArrayList;
 

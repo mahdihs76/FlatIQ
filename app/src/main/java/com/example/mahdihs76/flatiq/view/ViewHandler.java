@@ -1,4 +1,4 @@
-package com.example.mahdihs76.flatiq.server;
+package com.example.mahdihs76.flatiq.view;
 
 import com.example.mahdihs76.flatiq.view.Adapters.findGroup.GroupMemberAdapter;
 import com.example.mahdihs76.flatiq.view.Adapters.findGroup.GroupsAdapter;

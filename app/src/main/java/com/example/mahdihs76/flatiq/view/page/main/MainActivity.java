@@ -1,7 +1,6 @@
 package com.example.mahdihs76.flatiq.view.page.main;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.internal.BottomNavigationMenuView;
@@ -13,17 +12,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.mahdihs76.flatiq.R;
-import com.example.mahdihs76.flatiq.constant.LogTag;
-import com.example.mahdihs76.flatiq.model.Group;
 import com.example.mahdihs76.flatiq.model.Person;
 import com.example.mahdihs76.flatiq.server.BacktoryConnection;
-import com.example.mahdihs76.flatiq.server.ViewHandler;
-import com.example.mahdihs76.flatiq.server.WebService;
+import com.example.mahdihs76.flatiq.view.ViewHandler;
 import com.example.mahdihs76.flatiq.tool.CaseView;
 import com.example.mahdihs76.flatiq.tool.GuideUtils;
 import com.example.mahdihs76.flatiq.view.Adapters.findGroup.GroupMemberAdapter;
@@ -113,8 +107,8 @@ public class MainActivity extends AppCompatActivity {
     private void setPointTargets() {
         int height = this.getWindow().getWindowManager().getDefaultDisplay().getHeight();
         int width = this.getWindow().getWindowManager().getDefaultDisplay().getWidth();
-//        targets.add(new CaseView("کاربر", "صفحه‌ی کاربری خود را مشاهده و شخصی‌سازی کنید.", new PointTarget(120, height - 100))); //karbar
-        targets.add(new CaseView("قسمت فروش", "از محصولات ورزشی دیدن کرده و خرید کنید.", new PointTarget(width - 120, height- 100))); //mahsulat
+        targets.add(new CaseView("کاربر", "صفحه‌ی کاربری خود را مشاهده و شخصی‌سازی کنید.", new PointTarget(120, height - 100))); //karbar
+//        targets.add(new CaseView("قسمت فروش", "از محصولات ورزشی دیدن کرده و خرید کنید.", new PointTarget(width - 120, height- 100))); //mahsulat
         targets.add(new CaseView("گروه‌ها", "گروه‌های مطلوب خود را بیابید", new PointTarget(width/2 - 120, height - 100))); //findgroup
         targets.add(new CaseView("اخبار", "از تازه‌های دنیای ورزش و سلامت مطلع شوید.", new PointTarget(width/2 + 120, height - 100))); //news
         GuideUtils.showGuide(this, targets, 0);
