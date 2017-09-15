@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.mahdihs76.flatiq.R;
 import com.example.mahdihs76.flatiq.constant.LogTag;
@@ -89,6 +90,13 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.gallerypage:
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,shopFragment).commit();
                         break;
+                    case  R.id.newspage:
+                        Toast.makeText(MainActivity.this, "این بخش به زودی فعال می گردد", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.profile_page:
+                        Toast.makeText(MainActivity.this, "این بخش به زودی فعال می گردد", Toast.LENGTH_SHORT).show();
+                        break;
+
                 }
                 return true;
             }

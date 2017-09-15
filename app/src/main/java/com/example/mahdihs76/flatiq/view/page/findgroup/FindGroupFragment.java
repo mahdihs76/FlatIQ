@@ -20,6 +20,7 @@ import com.example.mahdihs76.flatiq.model.Group;
 import com.example.mahdihs76.flatiq.server.ViewHandler;
 import com.example.mahdihs76.flatiq.view.Adapters.findGroup.GroupsAdapter;
 import com.example.mahdihs76.flatiq.view.page.main.MainActivity;
+import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.ArrayList;
 
@@ -34,6 +35,9 @@ public class FindGroupFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_findgroup, container, false);
+
+        AVLoadingIndicatorView loading = (AVLoadingIndicatorView) view.findViewById(R.id.avi);
+        ViewHandler.avLoadingIndicatorView = loading;
 
         RecyclerView recyclerViewGroups = (RecyclerView) view.findViewById(R.id.recyclerview_groups);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());

@@ -1,31 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:background="@color/grey">
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:gravity="center_vertical"
-        android:background="@color/grey">
+        android:layout_height="match_parent">
 
-            <com.wang.avi.AVLoadingIndicatorView
-                android:id="@+id/avi"
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                style="@style/AVLoadingIndicatorView"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="false"
-                android:visibility="visible"
-                app:indicatorName="BallSpinFadeLoaderIndicator"
-                app:indicatorColor="@color/primaryDarkColor" />
+        <com.wang.avi.AVLoadingIndicatorView
+            android:id="@+id/avi"
+            style="@style/AVLoadingIndicatorView"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginTop="200dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:visibility="visible"
+            app:indicatorColor="@color/primaryDarkColor"
+            app:indicatorName="BallSpinFadeLoaderIndicator" />
 
         <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerview_groups"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/avi"
-            android:id="@+id/recyclerview_groups"/>
+            android:layout_height="wrap_content" />
 
     </RelativeLayout>
 

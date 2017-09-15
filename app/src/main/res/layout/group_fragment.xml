@@ -19,13 +19,15 @@
             android:id="@+id/group_information_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:layout_below="@+id/group_image"
-            android:layout_marginTop="10dp"
             android:elevation="7dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
 
             <RelativeLayout
+                android:id="@+id/relative_hdr"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="60">
@@ -37,11 +39,10 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="5dp"
                     android:src="@drawable/ic_add_circle"
-                    android:tag="ok"/>
+                    android:tag="ok" />
 
                 <TextView
                     android:id="@+id/group_name"
-                    fontPath="fonts/A.Ghasem.ttf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -49,28 +50,33 @@
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="10dp"
                     android:text="گروه حاج تقی"
-
                     android:textSize="25sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relative_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/relative_hdr"
+                android:layout_weight="60">
 
                 <RelativeLayout
                     android:id="@+id/location_bar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/group_name"
                     android:layout_marginBottom="5dp">
 
                     <ImageView
                         android:id="@+id/location_icon"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
-
                         android:layout_alignParentRight="true"
-                        android:src="@mipmap/location_icon" />
+                        android:layout_marginRight="8dp"
+                        android:src="@drawable/ic_maps_and_flags" />
 
 
                     <TextView
                         android:id="@+id/group_location"
-                        fontPath="fonts/BRoya.ttf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -80,7 +86,7 @@
                         android:text="خیابان ولیعصر پارک ملت"
                         android:textAlignment="center"
 
-                        android:textSize="18dp" />
+                        android:textSize="17sp" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -93,49 +99,67 @@
                         android:id="@+id/schedule_icon"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
-
                         android:layout_alignParentRight="true"
-                        android:src="@mipmap/watch_icon" />
+                        android:layout_marginRight="8dp"
+                        android:src="@drawable/ic_stopwatch" />
 
 
                     <TextView
                         android:id="@+id/group_schedule"
-                        fontPath="fonts/BRoya.ttf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginBottom="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_toLeftOf="@+id/schedule_icon"
-
                         android:text="خیابان ولیعصر پارک ملت"
                         android:textAlignment="center"
-                        android:textSize="18sp" />
+                        android:textSize="17sp" />
                 </RelativeLayout>
 
-                <TextView
-                    android:id="@+id/group_field"
+                <RelativeLayout
+                    android:id="@+id/field_bar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/schedule_bar"
-                    android:layout_marginBottom="10dp"
-                    android:text="دوچرخه سواری"
+                    android:layout_below="@+id/schedule_bar">
 
-                    android:textAlignment="center" />
+                    <ImageView
+                        android:id="@+id/field_icon"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="8dp"
+                        android:src="@drawable/ic_target" />
+
+
+                    <TextView
+                        android:id="@+id/group_field"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_toLeftOf="@+id/field_icon"
+                        android:text="خیابان ولیعصر پارک ملت"
+                        android:textAlignment="center"
+                        android:textSize="17sp" />
+                </RelativeLayout>
+
 
                 <TextView
                     android:id="@+id/group_size"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/group_field"
-                    android:text="اعضای گروه"
-                    android:paddingTop="8dp"
-                    android:paddingBottom="8dp"
-                    android:textSize="16sp"
+                    android:layout_below="@+id/field_bar"
                     android:background="@color/primaryColor"
+                    android:paddingBottom="8dp"
+                    android:paddingTop="8dp"
+                    android:text="اعضای گروه"
+                    android:textAlignment="center"
 
-                    android:textAlignment="center" />
+                    android:textSize="16sp" />
 
+            </RelativeLayout>
             </RelativeLayout>
 
 
@@ -152,12 +176,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/group_members_recyclerview"
-            android:text="تعداد حاضرین"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp"
-            android:textSize="16sp"
             android:background="@color/primaryColor"
-            android:textAlignment="center" />
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:text="تعداد حاضرین"
+            android:textAlignment="center"
+            android:textSize="16sp" />
 
         <com.github.mikephil.charting.charts.BarChart
             android:id="@+id/group_chart"

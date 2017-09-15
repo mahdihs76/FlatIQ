@@ -36,6 +36,7 @@ public class WebService {
                     }
                     ViewHandler.groupsAdapter.setGroups(Group.groupList);
                     ViewHandler.groupsAdapter.notifyDataSetChanged();
+                    ViewHandler.avLoadingIndicatorView.hide();
                 }
             }
         });

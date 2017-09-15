@@ -21,7 +21,7 @@
 
 
     <item
-        android:title="تازه های ورزش"
+        android:title="اخبار"
         android:icon="@drawable/ic_radio"
 
         android:id="@+id/newspage"
