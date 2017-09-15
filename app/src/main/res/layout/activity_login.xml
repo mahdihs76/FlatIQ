@@ -37,6 +37,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/shape_login"
         android:hint="رمز عبور"
+        android:inputType="textPassword"
         android:layout_below="@id/username"
         android:padding="12dp"
         android:gravity="center"
