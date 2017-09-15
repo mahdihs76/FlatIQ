@@ -37,6 +37,7 @@ public class FindGroupFragment extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerViewGroups.setLayoutManager(linearLayoutManager);
         GroupsAdapter groupsAdapter = new GroupsAdapter(getActivity(), Group.groupList);
+        //TODO should be replaced with getNear from Queries
 
         ViewHandler.groupsAdapter = groupsAdapter;
 
