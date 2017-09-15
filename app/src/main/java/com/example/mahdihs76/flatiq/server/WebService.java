@@ -1,6 +1,5 @@
 package com.example.mahdihs76.flatiq.server;
 
-import android.content.Context;
 import android.util.Log;
 
 import com.backtory.java.internal.BacktoryCallBack;
@@ -10,7 +9,6 @@ import com.backtory.java.internal.BacktoryResponse;
 import com.example.mahdihs76.flatiq.model.Group;
 import com.example.mahdihs76.flatiq.model.Person;
 import com.example.mahdihs76.flatiq.tool.Queries;
-import com.example.mahdihs76.flatiq.view.Adapters.findGroup.GroupMemberAdapter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -70,7 +68,7 @@ public class WebService {
     }
 
 
-    public static void addMember(final String memberID, final String groupID, final Context context) {
+    public static void addMember(final String memberID, final String groupID) {
 
 
         BacktoryQuery query1 = new BacktoryQuery(Database.TABLE_GROUP);
@@ -86,7 +84,6 @@ public class WebService {
                     result.saveInBackground(new BacktoryCallBack<Void>() {
                         @Override
                         public void onResponse(BacktoryResponse<Void> backtoryResponse) {
-                            //do sth?
                             //this is group
                             Queries.getGroupWithId(groupID).setMembers(Queries.getGroupWithId(groupID).getMembers() + "-" + memberID);
                             ViewHandler.groupMemberAdapter.setPersons(Queries.getGroupMembers(groupID));
@@ -111,7 +108,6 @@ public class WebService {
                     result.saveInBackground(new BacktoryCallBack<Void>() {
                         @Override
                         public void onResponse(BacktoryResponse<Void> backtoryResponse) {
-                            //do sth?
                             //this is person
                             Queries.getPersonWithId(memberID).setGroups(Queries.getPersonWithId(memberID).getGroups() + "-" + groupID);
                             try {
@@ -122,6 +118,67 @@ public class WebService {
                                 Log.i("debug", "onResponse: null " + Person.personList);
                             }
                             ViewHandler.groupMemberAdapter.setPersons(Queries.getGroupMembers(groupID));
+                            ViewHandler.groupMemberAdapter.notifyDataSetChanged();
+                        }
+                    });
+                }
+            }
+        });
+
+    }
+
+
+    public static void removeMember(final String memberId, final String groupId){
+
+
+        BacktoryQuery query1 = new BacktoryQuery(Database.TABLE_GROUP);
+        query1.selectKeys(Arrays.asList(Database.COLUMN_MEMBERS));
+        query1.whereEqualTo(Database.COLUMN_GROUP_ID, groupId);
+        query1.findInBackground(new BacktoryCallBack<List<BacktoryObject>>() {
+            @Override
+            public void onResponse(BacktoryResponse<List<BacktoryObject>> response) {
+                if (response.isSuccessful()) {
+                    List<BacktoryObject> list = response.body();
+                    BacktoryObject result = list.get(0);
+                    String members = (String) result.get(Database.COLUMN_MEMBERS);
+                    members = members.replaceAll(memberId, "");
+                    members.replaceAll("--", "");
+                    final String modifiedMembers = members;
+                    result.put(Database.COLUMN_MEMBERS, members);
+                    result.saveInBackground(new BacktoryCallBack<Void>() {
+                        @Override
+                        public void onResponse(BacktoryResponse<Void> backtoryResponse) {
+                            //this is group
+                            Queries.getGroupWithId(groupId).setMembers(modifiedMembers);
+                            ViewHandler.groupMemberAdapter.setPersons(Queries.getGroupMembers(groupId));
+                            ViewHandler.groupMemberAdapter.notifyDataSetChanged();
+                        }
+                    });
+
+                }
+            }
+        });
+
+        BacktoryQuery query2 = new BacktoryQuery(Database.TABLE_PERSON);
+        query1.selectKeys(Arrays.asList(Database.COLUMN_GROUPS));
+        query2.whereEqualTo(Database.COLUMN_PERSON_ID, memberId);
+        query2.findInBackground(new BacktoryCallBack<List<BacktoryObject>>() {
+            @Override
+            public void onResponse(BacktoryResponse<List<BacktoryObject>> backtoryResponse) {
+                if (backtoryResponse.isSuccessful()) {
+                    List<BacktoryObject> list = backtoryResponse.body();
+                    BacktoryObject result = list.get(0);
+                    String groups = (String) result.get(Database.COLUMN_GROUPS);
+                    groups = groups.replaceAll(groupId, "");
+                    groups = groups.replaceAll("--", "");
+                    final String modifiedGroups = groups;
+                    result.put(Database.COLUMN_GROUPS, modifiedGroups);
+                    result.saveInBackground(new BacktoryCallBack<Void>() {
+                        @Override
+                        public void onResponse(BacktoryResponse<Void> backtoryResponse) {
+                            //this is person
+                            Queries.getPersonWithId(memberId).setGroups(modifiedGroups);
+                            ViewHandler.groupMemberAdapter.setPersons(Queries.getGroupMembers(groupId));
                             ViewHandler.groupMemberAdapter.notifyDataSetChanged();
                         }
                     });
@@ -147,6 +204,5 @@ public class WebService {
             }
         });
     }
-
 
 }
