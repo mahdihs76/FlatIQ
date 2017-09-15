@@ -1,5 +1,6 @@
 package com.example.mahdihs76.flatiq.view.page.map;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -17,14 +18,15 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
 
     private ArrayList<Double> longitudes = new ArrayList<>();
     private ArrayList<Double> latitudes = new ArrayList<>();
-    private ArrayList<String> names = new ArrayList<>();
-    private ArrayList<String> activities = new ArrayList<>();
     private ArrayList<String> ids = new ArrayList<>();
 
 
@@ -32,15 +34,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
+                .setDefaultFontPath("fonts/YEKAN.TTF")
+                .setFontAttrId(R.attr.fontPath)
+                .build());
+
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         if (getIntent() != null && getIntent().getExtras() != null) {
             longitudes = (ArrayList<Double>) getIntent().getExtras().get(MainActivity.LONGITUDES);
             latitudes = (ArrayList<Double>) getIntent().getExtras().get(MainActivity.LATITUDES);
-            names = (ArrayList<String>) getIntent().getExtras().get(MainActivity.NAMES);
-            activities = (ArrayList<String>) getIntent().getExtras().get(MainActivity.ACTIVITIES);
             ids = (ArrayList<String>) getIntent().getExtras().get(MainActivity.IDS);
         }
     }
@@ -54,8 +58,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onInfoWindowClick(Marker marker) {
                 String id = (String) marker.getTag();
-                Intent intent = new Intent(MapsActivity.this,MainActivity.class );
-                intent.putExtra("groupId",id);
+                Intent intent = new Intent(MapsActivity.this, MainActivity.class);
+                intent.putExtra("groupId", id);
                 startActivity(intent);
             }
         });
@@ -67,10 +71,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             mMap.addMarker(new MarkerOptions()
                     .position(latLng)
                     .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_pin))
-                    .snippet(activities.get(i))
-                    .title(names.get(i)))
-                    .setTag(ids.get(i));
+                    .title(ids.get(i)));
         }
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10.0f));
+        mMap.setInfoWindowAdapter(new MyInfoWindowAdapter(this));
     }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
+
 }
